@@ -17,14 +17,14 @@ const Footer = () => {
           </div>
         </div>
         <div className="box">
-          <h5 className='font-medium mb-3'>Agrina</h5>
+          <h5 className='font-medium mb-3'>Agrosea</h5>
           <ul className='text-[14px] text-slate-600'>
-            <li className='mb-2'>Tentang Agrina</li>
+            <li className='mb-2'>Tentang Agrosea</li>
             <li className='mb-2'>Kebijakan Privasi</li>
-            <li className='mb-2'>Karir di Agrina</li>
+            <li className='mb-2'>Karir di Agrosea</li>
             <li className='mb-2'>Aturan Penggunaan</li>
             <li className='mb-2'>Promo Hari Ini</li>
-            <li className='mb-2'>Blog Agrina</li>
+            <li className='mb-2'>Blog Agrosea</li>
             <li className='mb-2'>FAQ (Tanya Jawab)</li>
           </ul>
         </div>
@@ -35,7 +35,7 @@ const Footer = () => {
             <li className='mb-2'>Metode Pembayaran</li>
             <li className='mb-2'>Gratis Ongkir</li>
             <li className='mb-2'>Pengembalian Barang</li>
-            <li className='mb-2'>Garansi Agrina</li>
+            <li className='mb-2'>Garansi Agrosea</li>
             <li className='mb-2'>Hubungi Kami</li>
           </ul>
         </div>
