@@ -48,6 +48,19 @@ import productUdang3 from './produk-udang3.jpeg'
 import productUdang4 from './produk-udang4.jpg'
 import productUdang5 from './produk-udang5.jpg'
 
+import productBitCabai from './product-images/bibitCabai.jpg'
+import productBitHerbal from './product-images/bibitHerbal.jpg'
+import productBitSayur from './product-images/bibitSayur.png'
+import productRempah from './product-images/rempah.jpeg'
+import productKit from './product-images/kit.jpg'
+
+import bandeng from './product-images/ikanBandeng.jpg'
+import gurame from './product-images/ikanGurame.jpg'
+import lele from './product-images/ikanLele.jpg'
+import patin from './product-images/ikanPatin.png'
+import kepiting from './product-images/kepiting.jpg'
+
+
 import vectorStore from './vectorStore.png'
 import vectorImg from './imgVector.png'
 import logoText from './logotext.png'
@@ -86,5 +99,6 @@ export {
   productKedelai,productKedelai2,productKedelai3,productKedelai4,productKedelai5,productTelur,productTelur2,productTelur3,
   productTelur4,productTelur5,productUdang,productUdang2,productUdang3,productUdang4,productUdang5,vectorStore,
   vectorImg,logoText,logoTextFooter,logoAgro,logoMarina,danaLogo,akulakuLogo,alfamartLogo,bcaLogo,bniLogo,briLogo,
-  gopayLogo,indomaretLogo,kredivoLogo,linkajaLogo,mandiriLogo,ovoLogo,loginLogo
+  gopayLogo,indomaretLogo,kredivoLogo,linkajaLogo,mandiriLogo,ovoLogo,loginLogo,productBitCabai,productBitHerbal,productBitSayur,
+  productKit,productRempah,bandeng,gurame,lele,patin,kepiting
 }

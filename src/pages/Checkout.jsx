@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FaCheck, FaCheckCircle, FaIdCard } from 'react-icons/fa'
 import CardPayment from '../components/molecules/CardPayment'
 import CheckoutProductBox from '../components/template/CheckoutProductBox'
@@ -10,9 +10,26 @@ import Swal from 'sweetalert2'
 const Checkout = () => {
   const location = useLocation();
   const productInformation = location.state || null
-  console.log(productInformation);
+  // console.log(productInformation);
   const [createPesanan, setCreatePesanan] = useState(false);
   const [selectPayment, setSelectPayment] = useState(1);
+  const [detailProduct, setDetailProduct] = useState({totalPrice: 0, totalQty:0})
+
+  useEffect(()=>{
+    getTotalPrices()
+  }, [productInformation])
+
+  const getTotalPrices = () => {
+    let totalPrice = 0
+    let totalQty = 0
+
+    productInformation.forEach(item => {
+      totalPrice += (item.priceAfterDiscount * item.qty)
+      totalQty += item.qty
+    })
+
+    setDetailProduct({...detailProduct, totalPrice:totalPrice, totalQty:totalQty})
+  }
 
   const  handleClickBuy = () => {
     Swal.fire({
@@ -58,8 +75,8 @@ const Checkout = () => {
           <h1 className='text-[15px] mb-2'>Ringkasan Pesanan</h1>
           <div className="count-price pb-3">
             <div className="subtotal flex items-center justify-between">
-              <h6 className='text-[14px] text-slate-500'>Subtotal ( {productInformation.qty} Produk)</h6>
-              <h5 className='text-[18px]'>Rp{productInformation.priceAfterDiscount*productInformation.qty}</h5>
+              <h6 className='text-[14px] text-slate-500'>Subtotal ( {detailProduct.totalQty} Produk)</h6>
+              <h5 className='text-[18px]'>Rp{detailProduct.totalPrice}</h5>
             </div>
             <div className="expedition-fee flex items-center justify-between pb-3 border-b">
               <h6 className='text-[14px] text-slate-500'>Biaya Pengiriman</h6>
@@ -67,7 +84,7 @@ const Checkout = () => {
             </div>
             <div className="total flex items-center justify-between pt-3">
               <h6 className='text-[14px] text-slate-500'>Total</h6>
-              <h5 className='text-[18px]'>Rp{(productInformation.qty*productInformation.priceAfterDiscount)+17000}</h5>
+              <h5 className='text-[18px]'>Rp{detailProduct.totalPrice+17000}</h5>
             </div>
           </div>
           <button onClick={handleClickBuy} className='w-full py-2 bg-aksen rounded-lg text-white'>Buat Pesanan</button>

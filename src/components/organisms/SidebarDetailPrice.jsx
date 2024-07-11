@@ -13,7 +13,7 @@ const SidebarDetailPrice = ({productId, productImage, productName, priceAfterDis
   const [qty, setQty] = useState(1);
   const [subTotal, setSubTotal] = useState(priceAfterDiscount);
 
-  const handleClickCart = () => {
+  const getProductById = () => {
     const getProduct = getProducts().find(p => p.id === productId)
     const product = {
       id: getProduct.id,
@@ -24,6 +24,11 @@ const SidebarDetailPrice = ({productId, productImage, productName, priceAfterDis
       qty: qty,
       total: getProduct.priceAfterDiscount
     }
+    return product
+  }
+
+  const handleClickCart = () => {
+    const product = getProductById()
     Swal.fire({
       title: "Berhasil Ditambahkan",
       text: "",
@@ -49,7 +54,8 @@ const SidebarDetailPrice = ({productId, productImage, productName, priceAfterDis
   }
 
   const handleNavigate = () => {
-    navigate('/checkout', {state: {productName, priceAfterDiscount, productImage, qty}})
+    const product = getProductById()
+    navigate('/checkout', {state: [product]})
   }
 
   return (
