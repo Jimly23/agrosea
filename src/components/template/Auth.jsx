@@ -1,17 +1,73 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { loginLogo, logoTextFooter } from '../../assets'
 import { Link, useNavigate } from 'react-router-dom'
 import { FaCheck } from 'react-icons/fa';
+import axios from 'axios';
+import { login, register } from '../../api/api';
+import Swal from 'sweetalert2'
 
-const Auth = ({children, title, txtButton, link, redirectPage}) => {
+const Auth = ({children, title, txtButton, link, redirectPage, dataUser}) => {
   const navigate = useNavigate();
-  const [isTerms, setIsTerms] = useState(false);
-  const [isKebijakan, setIsKebijakan] = useState(false);
+  const [isTerms, setIsTerms] = useState(true);
+  const [isKebijakan, setIsKebijakan] = useState(true);
+  const [messageError, setMessageError] = useState('')
 
-  const handleClickLogin = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     if(txtButton == 'Login'){
-      navigate('/home')
+      dataLoginUser(dataUser)
     }
+    if(txtButton == 'Daftar'){
+      addDataUser(dataUser)
+    }
+  }
+
+  const handleError = (message) => {
+    setMessageError(message)
+    setTimeout(() => {
+      setMessageError('')
+    }, 5000);
+  }
+
+  const addDataUser = async(data) => {
+    try {
+      if(data.username !== '' && data.email !== '' && data.password !== '' && data.confPassword !== ''){
+        if(data.password === data.confirmPassword){
+          await register(data)
+          handleSuccessRegister()
+          setTimeout(() => {
+            navigate('/')
+          }, 2000);
+        } else {
+          handleError('Password & confirm password harus sama!')
+        }
+      } else {
+        handleError('Data tidak boleh kosong!')
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  
+  const dataLoginUser = async(data) => {
+    try {
+      const response = await login(data)
+      if(typeof(response) == 'object'){
+        navigate('/home')
+      } else {
+        handleError(response)
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const  handleSuccessRegister = () => {
+    Swal.fire({
+      title: "Selamat anda berhasil mendaftar",
+      text: "",
+      icon: "success"
+    });
   }
 
   return (
@@ -25,9 +81,12 @@ const Auth = ({children, title, txtButton, link, redirectPage}) => {
             <h3 className='font-bold text-3xl mb-1'>{title}</h3>
             <p className='text-[14px]'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente, sunt?</p>
           </div>
+          {messageError !== '' && <h6 className='text-red-500'>{messageError}</h6>}
           <div className="form-box">
-            {children}
-            <button onClick={handleClickLogin} className='w-full bg-aksen rounded-md py-2 font-medium text-white mt-8'>{txtButton}</button>
+            <form onSubmit={handleSubmit}>
+              {children}
+              <button type='submit' className='w-full bg-aksen rounded-md py-2 font-medium text-white mt-8'>{txtButton}</button>
+            </form>
             {txtButton == 'Login'? 
               <p className='text-[14px] py-1 mt-1'>Lupa password? <span className=' text-aksen underline'>klik disini</span></p>
               :

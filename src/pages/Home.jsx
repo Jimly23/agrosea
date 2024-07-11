@@ -3,6 +3,7 @@ import CarouselBanner from '../components/organisms/CarouselBanner'
 import CategoryBox from '../components/organisms/CategoryBox'
 import Products from '../components/template/Products'
 import Footer from '../components/template/Footer'
+import { getUsers } from '../api/api'
 
 const Home = () => {
   const [isCategory, setIsCategory] = useState(1)
@@ -13,6 +14,7 @@ const Home = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
   return (
     <>
       <div className='max-w-[1280px] mx-auto'>
