@@ -82,9 +82,9 @@ const Profile = () => {
               <div className="address-box">
                 <div className="item border border-blue-500 bg-blue-50 rounded-md p-3">
                   <h5 className='font-medium'>Rumah</h5>
-                  <h3 className='font-medium text-[18px]'>Jimly Assidqi Hardiansyah</h3>
-                  <p className='text-[15px]'>082329322565</p>
-                  <p className='text-[14px] mb-5'>Dk.Gardu, Desa Buniwah, Kec.Sirampog, Kab.Brebes · Buniwah, Sirampog, Kab. Brebes, Jawa Tengah</p>
+                  <h3 className='font-medium text-[18px]'>Jimly Assidqi</h3>
+                  <p className='text-[15px]'>082329322353</p>
+                  <p className='text-[14px] mb-5'>Purwanegara, kec. Purwokerto Utara, Kab. Banyumas, Jawa Tengah</p>
                   <button className='text-aksen text-[14px]'>Ubah Alamat</button>
                 </div>
               </div>

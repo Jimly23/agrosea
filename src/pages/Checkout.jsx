@@ -54,7 +54,7 @@ const Checkout = () => {
             </div>
             <div className="address flex items-center gap-x-5">
               <h6 className='destination flex items-center text-[14px] md:text-normal px-2 justify-center pb-[2px] rounded-full bg-aksen text-white font-medium w-[80px]'>Rumah</h6>
-              <p>Dk.Gardu, Desa Buniwah, Kec.Sirampog, Kab.Brebes · Buniwah, Sirampog, Kab. Brebes, Jawa Tengah</p>
+              <p>Purwanegara, kec. Purwokerto Utara, Kab. Banyumas, Jawa Tengah</p>
             </div>
           </div>
         </div>
