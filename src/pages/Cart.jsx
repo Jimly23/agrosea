@@ -16,6 +16,10 @@ const Cart = () => {
   const [productList, setProductList] = useState(listCart)
   const [selectedId, setSelectedId] = useState(null)
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   useEffect(()=>{
     if(selectedId !== null){
       cek(selectedId)

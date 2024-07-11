@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import CarouselBanner from '../components/organisms/CarouselBanner'
 import CategoryBox from '../components/organisms/CategoryBox'
 import Products from '../components/template/Products'
@@ -9,6 +9,10 @@ const Home = () => {
   const handleIsCategory = (data) => {
     setIsCategory(data)
   }
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
       <div className='max-w-[1280px] mx-auto'>

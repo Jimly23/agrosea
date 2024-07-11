@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { FaChevronLeft, FaChevronRight, FaMinus, FaPlus, FaRegThumbsUp, FaStar, FaThumbsUp } from 'react-icons/fa'
 import { FaHand } from 'react-icons/fa6'
 import FeedBack from '../components/template/FeedBack'
@@ -12,6 +12,10 @@ import Footer from '../components/template/Footer'
 const DetailProduct = () => {
   const location = useLocation();
   const productInformation = location.state || null
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
       <div className='max-w-[1280px] mx-auto px-2 grid grid-cols-1 md:grid-cols-10 gap-y-3 md:gap-8 pb-20'>
