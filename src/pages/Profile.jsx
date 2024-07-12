@@ -45,7 +45,7 @@ const Profile = () => {
       <div className="sidebar hidden lg:block col-span-2 w-full h-[90vh] border rounded-lg overflow-hidden">
         <div className="header flex items-center gap-x-3 font-medium border-b p-3">
           <div className="profil-pic w-8 h-8 rounded-full border shadow-sm overflow-hidden"><img src={myProfilePic} className='w-full h-full object-cover' /></div>
-          <h4 className='text-md'>Waluyo</h4>
+          <h4 className='text-md'>Jimly</h4>
         </div>
         <div className="menu">
           <ul className='py-5 mt-3 font-medium text-slate-600'>

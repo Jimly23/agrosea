@@ -5,7 +5,7 @@ const CheckoutProductBox = ({products, productImage, productName, productPrice, 
   const [chooseExpedition, setChooseExpedition] = useState(1);
   return (
     <div className='rounded-lg overflow-hidden border shadow-sm'>
-      <div className="toko p-3 font-medium bg-slate-100">Toko Agmart</div>
+      <div className="toko p-3 font-medium bg-slate-100">Checkout Produk</div>
       {products.map((item, index) => (
         <div key={index} className="product-item p-3 grid grid-cols-1 md:grid-cols-10 mb-3">
           <div className="product-image col-span-2 w-[70px] h-[70px] rounded overflow-hidden mb-3 md:mb-0"><img src={item.productImage} className='w-full h-full object-cover' /></div>

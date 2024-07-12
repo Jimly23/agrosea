@@ -50,7 +50,7 @@ const Navbar = () => {
 
   return (
     <div className='w-[100%] bg-aksen fixed top-0 z-20'>
-      <div className="max-w-[1280px] flex justify-between items-center mx-auto py-3 px-5 gap-5">
+      <div className="max-w-[1280px] flex justify-between items-center mx-auto py-4 px-5 gap-5">
         <div className="logo hidden md:block">
           <Link to={'/home'}>
             <img src={logoText} className='w-[150px]' />

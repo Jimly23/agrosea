@@ -28,12 +28,12 @@ const Layout = () => {
           <Route path="/" element={<Login />}/>
           <Route path="/register" element={<Register />}/>
           <Route element={<ChatBot />}>
-            <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>}/>
-            <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>}/>
-            <Route path="/store" element={<ProtectedRoute><Store /></ProtectedRoute>}/>
-            <Route path="/cart" element={<ProtectedRoute><Cart /></ProtectedRoute>}/>
-            <Route path="/checkout" element={<ProtectedRoute><Checkout /></ProtectedRoute>}/>
-            <Route path="/detail-product" element={<ProtectedRoute><DetailProduct /></ProtectedRoute>}/>
+            <Route path="/home" element={<Home />}/>
+            <Route path="/profile" element={<Profile />}/>
+            <Route path="/store" element={<Store />}/>
+            <Route path="/cart" element={<Cart />}/>
+            <Route path="/checkout" element={<Checkout />}/>
+            <Route path="/detail-product" element={<DetailProduct />}/>
           </Route>
           <Route path="*" element={<NotFound />}/>
         </Routes>

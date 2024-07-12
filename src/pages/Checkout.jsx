@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { FaCheck, FaCheckCircle, FaIdCard } from 'react-icons/fa'
 import CardPayment from '../components/molecules/CardPayment'
 import CheckoutProductBox from '../components/template/CheckoutProductBox'
-import { danaPayment, debitPayment } from '../assets'
+import { akulakuLogo, alfamartLogo, bcaLogo, bniLogo, briLogo, danaLogo, danaPayment, debitPayment, gopayLogo, indomaretLogo, kredivoLogo, linkajaLogo, mandiriLogo, ovoLogo } from '../assets'
 import VoucherBox from '../components/molecules/VoucherBox'
 import { useLocation } from 'react-router-dom'
 import Swal from 'sweetalert2'
@@ -15,7 +15,8 @@ const Checkout = () => {
   const productInformation = location.state || null
   // console.log(productInformation);
   const [createPesanan, setCreatePesanan] = useState(false);
-  const [selectPayment, setSelectPayment] = useState(1);
+  const [selectPayment, setSelectPayment] = useState(null);
+  const [isShowAllPayment, setIsShowAllPayment] = useState(false)
   const [detailProduct, setDetailProduct] = useState({totalPrice: 0, totalQty:0, productId: []})
 
   useEffect(()=>{
@@ -69,14 +70,52 @@ const Checkout = () => {
         </div>
         <CheckoutProductBox products={productInformation}/>
       </div>
-      <div className="payment-method col-span-2 w-full border shadow-sm rounded-lg p-3">
+      <div className="relative payment-method col-span-2 w-full border shadow-sm rounded-lg p-3">
+        <div className={`${isShowAllPayment? 'block':'hidden'} absolute right-3 top-3 all-payment-method w-[300px] rounded-lg bg-white border shadow-sm p-3`}>
+          <div onClick={()=>setIsShowAllPayment(prev => !prev)} className="back absolute right-2 top-2 cursor-pointer w-6 h-6 rounded-full border flex justify-center items-center">X</div>
+          <div className="list-payment mt-8">
+            <div className="payment-item" onClick={()=>setSelectPayment(5)}>
+              <CardPayment logoPayment={mandiriLogo} paymentName={'Bank Mandiri'} selectPayment={selectPayment === 5}/>
+            </div>
+            <div className="payment-item" onClick={()=>setSelectPayment(6)}>
+              <CardPayment logoPayment={bcaLogo} paymentName={'Bank BCA'} selectPayment={selectPayment === 6}/>
+            </div>
+            <div className="payment-item" onClick={()=>setSelectPayment(7)}>
+              <CardPayment logoPayment={gopayLogo} paymentName={'Gopay'} selectPayment={selectPayment === 7}/>
+            </div>
+            <div className="payment-item" onClick={()=>setSelectPayment(8)}>
+              <CardPayment logoPayment={ovoLogo} paymentName={'OVO'} selectPayment={selectPayment === 8}/>
+            </div>
+            <div className="payment-item" onClick={()=>setSelectPayment(9)}>
+              <CardPayment logoPayment={linkajaLogo} paymentName={'Linkaja'} selectPayment={selectPayment === 9}/>
+            </div>
+            <div className="payment-item" onClick={()=>setSelectPayment(10)}>
+              <CardPayment logoPayment={akulakuLogo} paymentName={'Akulaku'} selectPayment={selectPayment === 10}/>
+            </div>
+            <div className="payment-item" onClick={()=>setSelectPayment(11)}>
+              <CardPayment logoPayment={kredivoLogo} paymentName={'Kredivo'} selectPayment={selectPayment === 11}/>
+            </div>
+            <div className="payment-item" onClick={()=>setSelectPayment(12)}>
+            <CardPayment logoPayment={indomaretLogo} paymentName={'Indomaret'} selectPayment={selectPayment === 12}/>
+            </div>
+          </div>
+        </div>
         <div className="header flex items-center justify-between">
           <h5 className='font-medium'>Pilih Metode Pembayaran</h5>
-          <button className='text-aksen'>Lihat semua metode {'>'}</button>
+          <button onClick={()=>setIsShowAllPayment(prev => !prev)} className='text-aksen'>Lihat semua metode {'>'}</button>
         </div>
         <div className="box-payment my-4">
           <div className="payment-item" onClick={()=>setSelectPayment(1)}>
-            <CardPayment logoPayment={debitPayment} paymentName={'Kartu Kredit/Debit'} selectPayment={selectPayment}/>
+            <CardPayment logoPayment={briLogo} paymentName={'Bank BRI'} selectPayment={selectPayment === 1}/>
+          </div>
+          <div className="payment-item" onClick={()=>setSelectPayment(2)}>
+            <CardPayment logoPayment={bniLogo} paymentName={'Bank BNI'} selectPayment={selectPayment === 2}/>
+          </div>
+          <div className="payment-item" onClick={()=>setSelectPayment(3)}>
+            <CardPayment logoPayment={danaLogo} paymentName={'Dana'} selectPayment={selectPayment === 3}/>
+          </div>
+          <div className="payment-item" onClick={()=>setSelectPayment(4)}>
+            <CardPayment logoPayment={alfamartLogo} paymentName={'Alfamart'} selectPayment={selectPayment === 4}/>
           </div>
         </div>
         <VoucherBox />
