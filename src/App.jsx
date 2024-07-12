@@ -10,10 +10,15 @@ import DetailProduct from "./pages/DetailProduct";
 import Checkout from "./pages/Checkout";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import ChatBot from "./components/template/ChatBot";
+import ProtectedRoute from "./pages/ProtectedRoute";
+import NotFound from "./pages/NotFound";
+import { useEffect, useState } from "react";
 
 const Layout = () => {
   const location = useLocation();
-  const shouldShowNavbar = !['/register', '/'].includes(location.pathname);
+  const pathsWithoutNavbar = ['/', '/register'];
+  const shouldShowNavbar = !pathsWithoutNavbar.includes(location.pathname) && ['/home','/profile','/store','/cart','/checkout','/detail-product'].includes(location.pathname);
 
   return (
     <>
@@ -22,12 +27,15 @@ const Layout = () => {
         <Routes>
           <Route path="/" element={<Login />}/>
           <Route path="/register" element={<Register />}/>
-          <Route path="/home" element={<Home />}/>
-          <Route path="/profile" element={<Profile />}/>
-          <Route path="/store" element={<Store />}/>
-          <Route path="/cart" element={<Cart />}/>
-          <Route path="/checkout" element={<Checkout />}/>
-          <Route path="/detail-product" element={<DetailProduct />}/>
+          <Route element={<ChatBot />}>
+            <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>}/>
+            <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>}/>
+            <Route path="/store" element={<ProtectedRoute><Store /></ProtectedRoute>}/>
+            <Route path="/cart" element={<ProtectedRoute><Cart /></ProtectedRoute>}/>
+            <Route path="/checkout" element={<ProtectedRoute><Checkout /></ProtectedRoute>}/>
+            <Route path="/detail-product" element={<ProtectedRoute><DetailProduct /></ProtectedRoute>}/>
+          </Route>
+          <Route path="*" element={<NotFound />}/>
         </Routes>
       </div>
     </>

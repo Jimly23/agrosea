@@ -12,7 +12,6 @@ import Footer from '../components/template/Footer'
 const DetailProduct = () => {
   const location = useLocation();
   const productInformation = location.state || null
-  console.log(productInformation);
 
   useEffect(() => {
     window.scrollTo(0, 0);

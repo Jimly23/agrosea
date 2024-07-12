@@ -3,9 +3,13 @@ import { FaBars, FaBoxOpen, FaCreditCard, FaFileInvoice, FaHome, FaLaptop, FaLoc
 import { FaComputer, FaMapLocation, FaMapLocationDot, FaRightFromBracket, FaStore } from 'react-icons/fa6';
 import InputBox from '../components/Atoms/InputBox';
 import { myProfilePic, vectorStore } from '../assets';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setAuth } from '../reducers/authReducers';
 
 const Profile = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [isMenuProfile, setIsMenuProfile] = useState(1);
   const [isMenuProfileMobile, setIsMenuProfileMobile] = useState(false);
 
@@ -13,6 +17,12 @@ const Profile = () => {
     setIsMenuProfile(selectMenu)
     setIsMenuProfileMobile(false)
   }
+
+  const handleLogout = () => {
+    navigate('/')
+    dispatch(setAuth(false))
+  }
+
   return (
     <div className='max-w-[1280px] mx-auto px-2 grid grid-cols-1 lg:grid-cols-10 gap-y-3 md:gap-5'>
       <div className="flex relative lg:hidden items-center gap-3">
@@ -43,7 +53,7 @@ const Profile = () => {
             <li onClick={()=>setIsMenuProfile(2)} className={`flex items-center gap-x-2 px-5 py-3 ${isMenuProfile === 2 && 'bg-blue-200 border-l-[5px] border-blue-500 text-blue-500'} cursor-pointer`}><FaMapLocationDot size={20}/> <span className='text-[15px]'>Daftar Alamat</span></li>
             <li onClick={()=>setIsMenuProfile(3)} className={`flex items-center gap-x-2 px-5 py-3 ${isMenuProfile === 3 && 'bg-blue-200 border-l-[5px] border-blue-500 text-blue-500'} cursor-pointer`}><FaStore size={20}/> <span className='text-[15px]'>Toko Favorit</span></li>
             <li onClick={()=>setIsMenuProfile(4)} className={`flex items-center gap-x-2 px-5 py-3 ${isMenuProfile === 4 && 'bg-blue-200 border-l-[5px] border-blue-500 text-blue-500'} cursor-pointer`}><FaLock size={20}/> <span className='text-[15px]'>Keamanan</span></li>
-            <Link to={'/'}><li onClick={()=>setIsMenuProfile(5)} className={`flex items-center gap-x-2 px-5 py-3 text-red-500 cursor-pointer`}><FaRightFromBracket size={20}/> <span className='text-[15px]'>Logout</span></li></Link>
+            <li onClick={handleLogout} className={`flex items-center gap-x-2 px-5 py-3 text-red-500 cursor-pointer`}><FaRightFromBracket size={20}/> <span className='text-[15px]'>Logout</span></li>
           </ul>
         </div>
       </div>

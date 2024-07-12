@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { FaCheck, FaMinus, FaPlus, FaRecycle, FaSquare, FaTrashAlt } from 'react-icons/fa'
 import VoucherBox from '../components/molecules/VoucherBox';
 import { Link, useNavigate } from 'react-router-dom';
 import Footer from '../components/template/Footer';
+import { deleteProductInCart } from '../reducers/cartReducers';
 
 const Cart = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const listCart = useSelector((state) => state.cart.listCart)
 
@@ -19,6 +21,10 @@ const Cart = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  useEffect(()=>{
+    setProductList(listCart)
+  }, [listCart])
 
   useEffect(()=>{
     if(selectedId !== null){
@@ -90,6 +96,7 @@ const Cart = () => {
       alert("Pilih Produk Terlebih Dahulu")
     }
   }
+
   return (
     <>
       <div className='max-w-[1280px] min-h-[90vh] mx-auto px-2 grid grid-cols-1 md:grid-cols-6 gap-y-3 md:gap-5'>
@@ -112,7 +119,7 @@ const Cart = () => {
                     <div className="product-price col-span-3 lg:col-span-2 font-medium text-lg">
                       <h6 className='text-center'>Rp{item.priceAfterDiscount}</h6>
                       <div className="box-qty flex items-center justify-start gap-x-3 mt-2">
-                        <button className='text-red-600'><FaTrashAlt /></button>
+                        <button onClick={()=>dispatch(deleteProductInCart(item.id))} className='text-red-600'><FaTrashAlt /></button>
                         <div className="count flex items-center gap-x-5 border px-4 rounded-lg">
                           {item.qty === 1?
                             <button className={` text-slate-600 opacity-50 cursor-pointer`} >

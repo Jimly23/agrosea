@@ -5,8 +5,11 @@ import { FaCheck } from 'react-icons/fa';
 import axios from 'axios';
 import { login, register } from '../../api/api';
 import Swal from 'sweetalert2'
+import { useDispatch } from 'react-redux';
+import { setAuth } from '../../reducers/authReducers';
 
 const Auth = ({children, title, txtButton, link, redirectPage, dataUser}) => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isTerms, setIsTerms] = useState(true);
   const [isKebijakan, setIsKebijakan] = useState(true);
@@ -53,6 +56,7 @@ const Auth = ({children, title, txtButton, link, redirectPage, dataUser}) => {
     try {
       const response = await login(data)
       if(typeof(response) == 'object'){
+        dispatch(setAuth(true))
         navigate('/home')
       } else {
         handleError(response)
@@ -72,7 +76,7 @@ const Auth = ({children, title, txtButton, link, redirectPage, dataUser}) => {
 
   return (
     <div className='grid grid-cols-1 lg:grid-cols-2 absolute left-0 right-0 top-0 bottom-0 overflow-x-hidden'>
-      <div className="bg-aksen hidden lg:flex items-center justify-center "><img src={loginLogo} className='w-[60%]'/></div>
+      <div className="bg-aksen hidden lg:flex items-center justify-center "><img src={loginLogo} className='w-full'/></div>
       <div className="bg-white flex justify-center items-center">
         <Link to={link}><button className='px-5 py-2 rounded-md border border-aksen font-medium text-aksen hover:bg-blue-100 absolute right-5 top-5'>{redirectPage}</button></Link>
         <div className="w-[80%] md:w-[70%] lg:w-[60%] xl:w-[50%]">
@@ -88,7 +92,8 @@ const Auth = ({children, title, txtButton, link, redirectPage, dataUser}) => {
               <button type='submit' className='w-full bg-aksen rounded-md py-2 font-medium text-white mt-8'>{txtButton}</button>
             </form>
             {txtButton == 'Login'? 
-              <p className='text-[14px] py-1 mt-1'>Lupa password? <span className=' text-aksen underline'>klik disini</span></p>
+              // <p className='text-[14px] py-1 mt-1'>Lupa password? <span className=' text-aksen underline'>klik disini</span></p>
+              <></>
               :
               <div className='mt-4'>
                 <div className="flex items-center gap-2 mb-1">

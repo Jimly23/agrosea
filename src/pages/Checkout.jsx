@@ -6,14 +6,17 @@ import { danaPayment, debitPayment } from '../assets'
 import VoucherBox from '../components/molecules/VoucherBox'
 import { useLocation } from 'react-router-dom'
 import Swal from 'sweetalert2'
+import { useDispatch } from 'react-redux'
+import { removeCart } from '../reducers/cartReducers'
 
 const Checkout = () => {
+  const dispatch = useDispatch();
   const location = useLocation();
   const productInformation = location.state || null
   // console.log(productInformation);
   const [createPesanan, setCreatePesanan] = useState(false);
   const [selectPayment, setSelectPayment] = useState(1);
-  const [detailProduct, setDetailProduct] = useState({totalPrice: 0, totalQty:0})
+  const [detailProduct, setDetailProduct] = useState({totalPrice: 0, totalQty:0, productId: []})
 
   useEffect(()=>{
     getTotalPrices()
@@ -22,13 +25,15 @@ const Checkout = () => {
   const getTotalPrices = () => {
     let totalPrice = 0
     let totalQty = 0
+    let productId = []
 
     productInformation.forEach(item => {
       totalPrice += (item.priceAfterDiscount * item.qty)
       totalQty += item.qty
+      productId.push(item.id)
     })
 
-    setDetailProduct({...detailProduct, totalPrice:totalPrice, totalQty:totalQty})
+    setDetailProduct({...detailProduct, totalPrice:totalPrice, totalQty:totalQty, productId:productId})
   }
 
   const  handleClickBuy = () => {
@@ -37,6 +42,10 @@ const Checkout = () => {
       text: "",
       icon: "success"
     });
+    const dataToRemove = detailProduct.productId
+    dataToRemove.map(item => (
+      dispatch(removeCart(item))
+    ))
   }
 
   return (
@@ -87,7 +96,7 @@ const Checkout = () => {
               <h5 className='text-[18px]'>Rp{detailProduct.totalPrice+17000}</h5>
             </div>
           </div>
-          <button onClick={handleClickBuy} className='w-full py-2 bg-aksen rounded-lg text-white'>Buat Pesanan</button>
+          <button onClick={()=>handleClickBuy(detailProduct)} className='w-full py-2 bg-aksen rounded-lg text-white'>Buat Pesanan</button>
         </div>
       </div>
 

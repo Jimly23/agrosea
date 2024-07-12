@@ -85,7 +85,7 @@ import loginLogo from './logoLogin.png'
 
 
 import iklan1 from './iklan1.png'
-import iklan2 from './iklan2.jpg'
+import iklan2 from './iklan2.png'
 import iklan3 from './iklan3.png'
 
 import transactionNull from './transaksiKosong.jpg'
