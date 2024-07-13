@@ -5,6 +5,7 @@ import VoucherBox from '../components/molecules/VoucherBox';
 import { Link, useNavigate } from 'react-router-dom';
 import Footer from '../components/template/Footer';
 import { deleteProductInCart } from '../reducers/cartReducers';
+import Swal from 'sweetalert2'
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -93,7 +94,11 @@ const Cart = () => {
     if(isSelectProduct || isAllProduct){
       navigate('/checkout', {state: productInformation})
     } else {
-      alert("Pilih Produk Terlebih Dahulu")
+      Swal.fire({
+        title: "Pilih produk terlebih dahulu",
+        text: "",
+        icon: "warning"
+      });
     }
   }
 

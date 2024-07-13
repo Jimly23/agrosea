@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { FaBars, FaBoxOpen, FaCreditCard, FaFileInvoice, FaHome, FaLaptop, FaLock, FaMap, FaPlusCircle, FaRegIdCard, FaStoreAlt, FaUser } from 'react-icons/fa';
+import { FaBars, FaBox, FaBoxOpen, FaCreditCard, FaFileInvoice, FaHome, FaLaptop, FaLock, FaMap, FaPlusCircle, FaRegIdCard, FaStar, FaStoreAlt, FaTruck, FaUser, FaWallet } from 'react-icons/fa';
 import { FaComputer, FaMapLocation, FaMapLocationDot, FaRightFromBracket, FaStore } from 'react-icons/fa6';
 import InputBox from '../components/Atoms/InputBox';
 import { myProfilePic, vectorStore } from '../assets';
@@ -37,8 +37,10 @@ const Profile = () => {
           <ul className='py-5 mt-3 font-medium text-slate-600'>
             <li onClick={()=>handleClickMenuProfileMobile(1)} className={`flex items-center gap-x-2 px-5 py-3 ${isMenuProfile === 1 && 'bg-blue-200 border-l-[5px] border-blue-500 text-blue-500'} cursor-pointer`}><FaUser size={20}/> <span className='text-[15px]'>Biodata Diri</span></li>
             <li onClick={()=>handleClickMenuProfileMobile(2)} className={`flex items-center gap-x-2 px-5 py-3 ${isMenuProfile === 2 && 'bg-blue-200 border-l-[5px] border-blue-500 text-blue-500'} cursor-pointer`}><FaMapLocationDot size={20}/> <span className='text-[15px]'>Daftar Alamat</span></li>
-            <li onClick={()=>handleClickMenuProfileMobile(3)} className={`flex items-center gap-x-2 px-5 py-3 ${isMenuProfile === 3 && 'bg-blue-200 border-l-[5px] border-blue-500 text-blue-500'} cursor-pointer`}><FaStore size={20}/> <span className='text-[15px]'>Toko Favorit</span></li>
-            <li onClick={()=>handleClickMenuProfileMobile(4)} className={`flex items-center gap-x-2 px-5 py-3 ${isMenuProfile === 4 && 'bg-blue-200 border-l-[5px] border-blue-500 text-blue-500'} cursor-pointer`}><FaLock size={20}/> <span className='text-[15px]'>Keamanan</span></li>
+            <li onClick={()=>handleClickMenuProfileMobile(3)} className={`flex items-center gap-x-2 px-5 py-3 ${isMenuProfile === 3 && 'bg-blue-200 border-l-[5px] border-blue-500 text-blue-500'} cursor-pointer`}><FaMapLocationDot size={20}/> <span className='text-[15px]'>Pesanan Saya</span></li>
+            <li onClick={()=>handleClickMenuProfileMobile(4)} className={`flex items-center gap-x-2 px-5 py-3 ${isMenuProfile === 4 && 'bg-blue-200 border-l-[5px] border-blue-500 text-blue-500'} cursor-pointer`}><FaStore size={20}/> <span className='text-[15px]'>Toko Favorit</span></li>
+            <li onClick={()=>handleClickMenuProfileMobile(5)} className={`flex items-center gap-x-2 px-5 py-3 ${isMenuProfile === 5 && 'bg-blue-200 border-l-[5px] border-blue-500 text-blue-500'} cursor-pointer`}><FaLock size={20}/> <span className='text-[15px]'>Keamanan</span></li>
+            <li onClick={handleLogout} className={`flex items-center gap-x-2 px-5 py-3 text-red-500 cursor-pointer`}><FaRightFromBracket size={20}/> <span className='text-[15px]'>Logout</span></li>
           </ul>
         </div>
       </div>
@@ -51,8 +53,9 @@ const Profile = () => {
           <ul className='py-5 mt-3 font-medium text-slate-600'>
             <li onClick={()=>setIsMenuProfile(1)} className={`flex items-center gap-x-2 px-5 py-3 ${isMenuProfile === 1 && 'bg-blue-200 border-l-[5px] border-blue-500 text-blue-500'} cursor-pointer`}><FaUser size={20}/> <span className='text-[15px]'>Biodata Diri</span></li>
             <li onClick={()=>setIsMenuProfile(2)} className={`flex items-center gap-x-2 px-5 py-3 ${isMenuProfile === 2 && 'bg-blue-200 border-l-[5px] border-blue-500 text-blue-500'} cursor-pointer`}><FaMapLocationDot size={20}/> <span className='text-[15px]'>Daftar Alamat</span></li>
-            <li onClick={()=>setIsMenuProfile(3)} className={`flex items-center gap-x-2 px-5 py-3 ${isMenuProfile === 3 && 'bg-blue-200 border-l-[5px] border-blue-500 text-blue-500'} cursor-pointer`}><FaStore size={20}/> <span className='text-[15px]'>Toko Favorit</span></li>
-            <li onClick={()=>setIsMenuProfile(4)} className={`flex items-center gap-x-2 px-5 py-3 ${isMenuProfile === 4 && 'bg-blue-200 border-l-[5px] border-blue-500 text-blue-500'} cursor-pointer`}><FaLock size={20}/> <span className='text-[15px]'>Keamanan</span></li>
+            <li onClick={()=>setIsMenuProfile(3)} className={`flex items-center gap-x-2 px-5 py-3 ${isMenuProfile === 3 && 'bg-blue-200 border-l-[5px] border-blue-500 text-blue-500'} cursor-pointer`}><FaMapLocationDot size={20}/> <span className='text-[15px]'>Pesanan Saya</span></li>
+            <li onClick={()=>setIsMenuProfile(4)} className={`flex items-center gap-x-2 px-5 py-3 ${isMenuProfile === 4 && 'bg-blue-200 border-l-[5px] border-blue-500 text-blue-500'} cursor-pointer`}><FaStore size={20}/> <span className='text-[15px]'>Toko Favorit</span></li>
+            <li onClick={()=>setIsMenuProfile(5)} className={`flex items-center gap-x-2 px-5 py-3 ${isMenuProfile === 5 && 'bg-blue-200 border-l-[5px] border-blue-500 text-blue-500'} cursor-pointer`}><FaLock size={20}/> <span className='text-[15px]'>Keamanan</span></li>
             <li onClick={handleLogout} className={`flex items-center gap-x-2 px-5 py-3 text-red-500 cursor-pointer`}><FaRightFromBracket size={20}/> <span className='text-[15px]'>Logout</span></li>
           </ul>
         </div>
@@ -104,13 +107,38 @@ const Profile = () => {
         }
         {isMenuProfile === 3 && 
           <>
+          <div className="border shadow-sm rounded-lg p-2 sm:p-5 flex items-center flex-col ">
+            <div className='grid grid-cols-4 bg-blue-100 w-full py-8 rounded-md border border-aksen'>
+              <div className="before-pay flex flex-col justify-center items-center gap-1 p-2 bg-white rounded-md">
+                <FaWallet size={25} className='text-slate-600'/>
+                <p className='text-[12px] sm:text-normal'>Belum Bayar</p>
+              </div>
+              <div className="before-pay flex flex-col justify-center items-center gap-1">
+                <FaBox size={25} className='text-slate-600'/>
+                <p className='text-[12px] sm:text-normal'>Dikemas</p>
+              </div>
+              <div className="before-pay flex flex-col justify-center items-center gap-1">
+                <FaTruck size={25} className='text-slate-600'/>
+                <p className='text-[12px] sm:text-normal'>Dikirim</p>
+              </div>
+              <div className="before-pay flex flex-col justify-center items-center gap-1">
+                <FaStar size={25} className='text-slate-600'/>
+                <p className='text-[12px] sm:text-normal'>Beri Penilaian</p>
+              </div>
+            </div>
+            <img src={vectorStore} className='w-[400px]' />
+          </div>
+        </>
+        }
+        {isMenuProfile === 4 && 
+          <>
           <div className="border shadow-sm rounded-lg p-5 flex items-center flex-col ">
             <img src={vectorStore} className='w-[400px]' />
             <h6 className='font-medium text-slate-700'>Belum Ada Toko Favorit</h6>
           </div>
         </>
         }
-        {isMenuProfile === 4 && 
+        {isMenuProfile === 5 && 
           <div className="secure">
             <div className="grid grid-1 md:grid-cols-2 p-8 rounded-lg text-slate-700 border shadow-sm gap-10">
               <div className="change-password">

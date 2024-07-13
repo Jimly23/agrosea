@@ -67,6 +67,7 @@ import logoText from './logotext.png'
 import logoTextFooter from './logotextfooter.png'
 import logoAgro from './logoagro.png'
 import logoMarina from './logomarina.png'
+import logoAgroMarina from './logoagromarina.png'
 import searchProduct from './searchProduct.png'
 
 import danaLogo from './payment/dana.png'
@@ -101,5 +102,5 @@ export {
   productTelur4,productTelur5,productUdang,productUdang2,productUdang3,productUdang4,productUdang5,vectorStore,
   vectorImg,logoText,logoTextFooter,logoAgro,logoMarina,danaLogo,akulakuLogo,alfamartLogo,bcaLogo,bniLogo,briLogo,
   gopayLogo,indomaretLogo,kredivoLogo,linkajaLogo,mandiriLogo,ovoLogo,loginLogo,productBitCabai,productBitHerbal,productBitSayur,
-  productKit,productRempah,bandeng,gurame,lele,patin,kepiting,searchProduct
+  productKit,productRempah,bandeng,gurame,lele,patin,kepiting,searchProduct,logoAgroMarina
 }

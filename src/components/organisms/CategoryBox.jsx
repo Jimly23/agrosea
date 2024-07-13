@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { logoAgro, logoMarina } from '../../assets'
+import { logoAgro, logoAgroMarina, logoMarina } from '../../assets'
 
 const CategoryBox = ({onCategory}) => {
   const [isCategory, setIsCategory] = useState(1)
@@ -11,7 +11,7 @@ const CategoryBox = ({onCategory}) => {
       <h4 className='md:text-xl'>Kategori</h4>
       <div className='w-full border grid grid-cols-3 text-center py-2 mt-2 rounded-lg shadow-sm'>
         <div className="all text-sm cursor-pointer flex justify-center items-center gap-x-2" onClick={()=>handleCheckCategory(1)}>
-          <img src={logoAgro} className='w-[40px]' />
+          <img src={logoAgroMarina} className='w-[40px]' />
           <h6>Semua</h6>
         </div>
         <div className="agro text-sm cursor-pointer flex justify-center items-center gap-x-2 border-l border-r" onClick={()=>handleCheckCategory(2)}>

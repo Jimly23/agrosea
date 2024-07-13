@@ -38,15 +38,30 @@ const Checkout = () => {
   }
 
   const  handleClickBuy = () => {
-    Swal.fire({
-      title: "Pesanan Berhasil Dibuat",
-      text: "",
-      icon: "success"
-    });
-    const dataToRemove = detailProduct.productId
-    dataToRemove.map(item => (
-      dispatch(removeCart(item))
-    ))
+    if(selectPayment !== null){
+      Swal.fire({
+        title: "Pesanan Berhasil Dibuat",
+        text: "",
+        icon: "success"
+      });
+      const dataToRemove = detailProduct.productId
+      dataToRemove.map(item => (
+        dispatch(removeCart(item))
+      ))
+    } else {
+      Swal.fire({
+        title: "Pilih metode pembayaran terlebih dahulu",
+        text: "",
+        icon: "warning"
+      });
+    }
+  }
+
+  const handleSelectPayment = (selectId) => {
+    setSelectPayment(selectId)
+    setTimeout(() => {
+      setIsShowAllPayment(false)
+    }, 150);
   }
 
   return (
@@ -74,28 +89,28 @@ const Checkout = () => {
         <div className={`${isShowAllPayment? 'block':'hidden'} absolute right-3 top-3 all-payment-method w-[300px] rounded-lg bg-white border shadow-sm p-3`}>
           <div onClick={()=>setIsShowAllPayment(prev => !prev)} className="back absolute right-2 top-2 cursor-pointer w-6 h-6 rounded-full border flex justify-center items-center">X</div>
           <div className="list-payment mt-8">
-            <div className="payment-item" onClick={()=>setSelectPayment(5)}>
+            <div className="payment-item" onClick={()=>handleSelectPayment(5)}>
               <CardPayment logoPayment={mandiriLogo} paymentName={'Bank Mandiri'} selectPayment={selectPayment === 5}/>
             </div>
-            <div className="payment-item" onClick={()=>setSelectPayment(6)}>
+            <div className="payment-item" onClick={()=>handleSelectPayment(6)}>
               <CardPayment logoPayment={bcaLogo} paymentName={'Bank BCA'} selectPayment={selectPayment === 6}/>
             </div>
-            <div className="payment-item" onClick={()=>setSelectPayment(7)}>
+            <div className="payment-item" onClick={()=>handleSelectPayment(7)}>
               <CardPayment logoPayment={gopayLogo} paymentName={'Gopay'} selectPayment={selectPayment === 7}/>
             </div>
-            <div className="payment-item" onClick={()=>setSelectPayment(8)}>
+            <div className="payment-item" onClick={()=>handleSelectPayment(8)}>
               <CardPayment logoPayment={ovoLogo} paymentName={'OVO'} selectPayment={selectPayment === 8}/>
             </div>
-            <div className="payment-item" onClick={()=>setSelectPayment(9)}>
+            <div className="payment-item" onClick={()=>handleSelectPayment(9)}>
               <CardPayment logoPayment={linkajaLogo} paymentName={'Linkaja'} selectPayment={selectPayment === 9}/>
             </div>
-            <div className="payment-item" onClick={()=>setSelectPayment(10)}>
+            <div className="payment-item" onClick={()=>handleSelectPayment(10)}>
               <CardPayment logoPayment={akulakuLogo} paymentName={'Akulaku'} selectPayment={selectPayment === 10}/>
             </div>
-            <div className="payment-item" onClick={()=>setSelectPayment(11)}>
+            <div className="payment-item" onClick={()=>handleSelectPayment(11)}>
               <CardPayment logoPayment={kredivoLogo} paymentName={'Kredivo'} selectPayment={selectPayment === 11}/>
             </div>
-            <div className="payment-item" onClick={()=>setSelectPayment(12)}>
+            <div className="payment-item" onClick={()=>handleSelectPayment(12)}>
             <CardPayment logoPayment={indomaretLogo} paymentName={'Indomaret'} selectPayment={selectPayment === 12}/>
             </div>
           </div>
