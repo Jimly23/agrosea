@@ -7,6 +7,15 @@ const CardProduct = ({productInformation}) => {
   const handleNavigateClick = () => {
     navigate('/detail-product', {state: productInformation})
   }
+
+  const returnDiscount = productInformation.price - ((productInformation.discountPercent / 100)*productInformation.price)
+
+  const formattedNumber = returnDiscount.toLocaleString('id-ID', {
+    style: 'currency',
+    currency: 'IDR',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0
+  });
   
   return (
     <div onClick={handleNavigateClick} className='w-full p-1 h-[250px] sm:h-[320px] rounded-lg border cursor-pointer'>
@@ -15,7 +24,7 @@ const CardProduct = ({productInformation}) => {
       </div>
       <div className="desc font-normal">
         <div className="title text-[15px] font-medium">{productInformation.productName}</div>
-        <div className="price font-medium">Rp{productInformation.priceAfterDiscount}</div>
+        <div className="price font-medium">{formattedNumber}</div>
         <div className="discount text-[12px] flex items-center">
           <h6 className='text-slate-500 line-through font-medium'>Rp{productInformation.price}</h6>
           <h6 className='text-red-500 font-bold ms-1'>{productInformation.discountPercent}%</h6>

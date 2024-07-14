@@ -6,7 +6,7 @@ import axios from 'axios';
 import { login, register } from '../../api/api';
 import Swal from 'sweetalert2'
 import { useDispatch } from 'react-redux';
-import { setAuth } from '../../reducers/authReducers';
+import { setAuth, setUser } from '../../reducers/authReducers';
 
 const Auth = ({children, title, txtButton, link, redirectPage, dataUser}) => {
   const dispatch = useDispatch();
@@ -66,6 +66,7 @@ const Auth = ({children, title, txtButton, link, redirectPage, dataUser}) => {
       const response = await login(data)
       if(typeof(response) == 'object'){
         dispatch(setAuth(true))
+        dispatch(setUser(response))
         navigate('/home')
       } else {
         handleError(response)

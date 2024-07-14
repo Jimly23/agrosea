@@ -11,6 +11,15 @@ export const getUsers = async() => {
   }
 }
 
+export const getUserById = async(id) => {
+  try {
+    const response = await axios.get('https://668fb31ec0a7969efd992601.mockapi.io/api/v1/users')
+    return response
+  } catch (error) {
+    return error
+  }
+}
+
 export const register = async(data) => {
   try {
     const response = await axios.post('https://668fb31ec0a7969efd992601.mockapi.io/api/v1/users/',data)

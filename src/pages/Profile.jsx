@@ -1,14 +1,15 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FaBars, FaBox, FaBoxOpen, FaCreditCard, FaFileInvoice, FaHome, FaLaptop, FaLock, FaMap, FaPlusCircle, FaRegIdCard, FaStar, FaStoreAlt, FaTruck, FaUser, FaWallet } from 'react-icons/fa';
 import { FaComputer, FaMapLocation, FaMapLocationDot, FaRightFromBracket, FaStore } from 'react-icons/fa6';
 import InputBox from '../components/Atoms/InputBox';
 import { myProfilePic, vectorStore } from '../assets';
 import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setAuth } from '../reducers/authReducers';
 
 const Profile = () => {
   const dispatch = useDispatch();
+  const userLogin = useSelector((state) => state.auth.user)
   const navigate = useNavigate();
   const [isMenuProfile, setIsMenuProfile] = useState(1);
   const [isMenuProfileMobile, setIsMenuProfileMobile] = useState(false);
@@ -47,13 +48,13 @@ const Profile = () => {
       <div className="sidebar hidden lg:block col-span-2 w-full h-[90vh] border rounded-lg overflow-hidden">
         <div className="header flex items-center gap-x-3 font-medium border-b p-3">
           <div className="profil-pic w-8 h-8 rounded-full border shadow-sm overflow-hidden"><img src={myProfilePic} className='w-full h-full object-cover' /></div>
-          <h4 className='text-md'>Jimly</h4>
+          <h4 className='text-md'>{userLogin.username}</h4>
         </div>
         <div className="menu">
           <ul className='py-5 mt-3 font-medium text-slate-600'>
             <li onClick={()=>setIsMenuProfile(1)} className={`flex items-center gap-x-2 px-5 py-3 ${isMenuProfile === 1 && 'bg-blue-200 border-l-[5px] border-blue-500 text-blue-500'} cursor-pointer`}><FaUser size={20}/> <span className='text-[15px]'>Biodata Diri</span></li>
             <li onClick={()=>setIsMenuProfile(2)} className={`flex items-center gap-x-2 px-5 py-3 ${isMenuProfile === 2 && 'bg-blue-200 border-l-[5px] border-blue-500 text-blue-500'} cursor-pointer`}><FaMapLocationDot size={20}/> <span className='text-[15px]'>Daftar Alamat</span></li>
-            <li onClick={()=>setIsMenuProfile(3)} className={`flex items-center gap-x-2 px-5 py-3 ${isMenuProfile === 3 && 'bg-blue-200 border-l-[5px] border-blue-500 text-blue-500'} cursor-pointer`}><FaMapLocationDot size={20}/> <span className='text-[15px]'>Pesanan Saya</span></li>
+            <li onClick={()=>setIsMenuProfile(3)} className={`flex items-center gap-x-2 px-5 py-3 ${isMenuProfile === 3 && 'bg-blue-200 border-l-[5px] border-blue-500 text-blue-500'} cursor-pointer`}><FaBoxOpen size={20}/> <span className='text-[15px]'>Pesanan Saya</span></li>
             <li onClick={()=>setIsMenuProfile(4)} className={`flex items-center gap-x-2 px-5 py-3 ${isMenuProfile === 4 && 'bg-blue-200 border-l-[5px] border-blue-500 text-blue-500'} cursor-pointer`}><FaStore size={20}/> <span className='text-[15px]'>Toko Favorit</span></li>
             <li onClick={()=>setIsMenuProfile(5)} className={`flex items-center gap-x-2 px-5 py-3 ${isMenuProfile === 5 && 'bg-blue-200 border-l-[5px] border-blue-500 text-blue-500'} cursor-pointer`}><FaLock size={20}/> <span className='text-[15px]'>Keamanan</span></li>
             <li onClick={handleLogout} className={`flex items-center gap-x-2 px-5 py-3 text-red-500 cursor-pointer`}><FaRightFromBracket size={20}/> <span className='text-[15px]'>Logout</span></li>
@@ -71,9 +72,9 @@ const Profile = () => {
             </div>
             <div className='col-span-7'>
               <div className="border rounded-lg grid grid-cols-1 md:grid-cols-2 p-5 gap-5 font-medium">
-                <InputBox title={'Nama Depan'} placeholder={'Masukan nama depan anda'}/>
+                <InputBox title={'Nama Depan'} placeholder={userLogin.username}/>
                 <InputBox title={'Nama Belakang'} placeholder={'Masukan nama belakang anda'}/>
-                <div className="email md:col-span-2"><InputBox title={'Email'} placeholder={'Masukan email'}/></div>
+                <div className="email md:col-span-2"><InputBox title={'Email'} placeholder={userLogin.email}/></div>
                 <InputBox title={'Telepon'} placeholder={'Masukan nomor telepon'}/>
                 <div className="birthday-date">
                   <div className="header mb-1 flex items-center gap-x-1">
@@ -108,22 +109,30 @@ const Profile = () => {
         {isMenuProfile === 3 && 
           <>
           <div className="border shadow-sm rounded-lg p-2 sm:p-5 flex items-center flex-col ">
-            <div className='grid grid-cols-4 bg-blue-100 w-full py-8 rounded-md border border-aksen'>
-              <div className="before-pay flex flex-col justify-center items-center gap-1 p-2 bg-white rounded-md">
-                <FaWallet size={25} className='text-slate-600'/>
-                <p className='text-[12px] sm:text-normal'>Belum Bayar</p>
+            <div className='grid grid-cols-4 bg-blue-100 w-full py-5 rounded-md border border-aksen'>
+              <div className="before-pay flex flex-col justify-center items-center gap-1 p-2 rounded-md">
+                <div className="bg-white py-4 w-[80px] rounded-md flex items-center flex-col justify-center">
+                  <FaWallet size={25} className='text-slate-600'/>
+                  <p className='text-[12px] sm:text-normal'>Belum Bayar</p>
+                </div>
               </div>
               <div className="before-pay flex flex-col justify-center items-center gap-1">
-                <FaBox size={25} className='text-slate-600'/>
-                <p className='text-[12px] sm:text-normal'>Dikemas</p>
+                <div className="bg-white py-4 w-[80px] rounded-md flex items-center flex-col justify-center">
+                  <FaBox size={25} className='text-slate-600'/>
+                  <p className='text-[12px] sm:text-normal'>Dikemas</p>
+                </div>
               </div>
               <div className="before-pay flex flex-col justify-center items-center gap-1">
-                <FaTruck size={25} className='text-slate-600'/>
-                <p className='text-[12px] sm:text-normal'>Dikirim</p>
+                <div className="bg-white py-4 w-[80px] rounded-md flex items-center flex-col justify-center">
+                  <FaTruck size={25} className='text-slate-600'/>
+                  <p className='text-[12px] sm:text-normal'>Dikirim</p>
+                </div>
               </div>
               <div className="before-pay flex flex-col justify-center items-center gap-1">
-                <FaStar size={25} className='text-slate-600'/>
-                <p className='text-[12px] sm:text-normal'>Beri Penilaian</p>
+                <div className="bg-white py-4 w-[80px] rounded-md flex items-center flex-col justify-center">
+                  <FaStar size={25} className='text-slate-600'/>
+                  <p className='text-[12px] sm:text-normal'>Beri Penilaian</p>
+                </div>
               </div>
             </div>
             <img src={vectorStore} className='w-[400px]' />

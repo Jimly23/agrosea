@@ -14,7 +14,7 @@ const FeedBackItem = () => {
                 <div className="date-post text-[12px] text-slate-500 -mt-1">Ditulis 29 Juni, 2024</div>
               </div>
             </div>
-            <div className="rating flex items-center text-orange-400">
+            <div className="rating flex items-center text-yellow-400">
               <FaStar />
               <FaStar />
               <FaStar />

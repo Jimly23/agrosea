@@ -4,19 +4,21 @@ import CardPayment from '../components/molecules/CardPayment'
 import CheckoutProductBox from '../components/template/CheckoutProductBox'
 import { akulakuLogo, alfamartLogo, bcaLogo, bniLogo, briLogo, danaLogo, danaPayment, debitPayment, gopayLogo, indomaretLogo, kredivoLogo, linkajaLogo, mandiriLogo, ovoLogo } from '../assets'
 import VoucherBox from '../components/molecules/VoucherBox'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import { useDispatch } from 'react-redux'
 import { removeCart } from '../reducers/cartReducers'
 
 const Checkout = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const location = useLocation();
   const productInformation = location.state || null
   // console.log(productInformation);
   const [createPesanan, setCreatePesanan] = useState(false);
   const [selectPayment, setSelectPayment] = useState(null);
   const [isShowAllPayment, setIsShowAllPayment] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
   const [detailProduct, setDetailProduct] = useState({totalPrice: 0, totalQty:0, productId: []})
 
   useEffect(()=>{
@@ -36,6 +38,20 @@ const Checkout = () => {
 
     setDetailProduct({...detailProduct, totalPrice:totalPrice, totalQty:totalQty, productId:productId})
   }
+
+  const priceBeforeOngkir = detailProduct.totalPrice.toLocaleString('id-ID', {
+    style: 'currency',
+    currency: 'IDR',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0
+  })
+
+  const priceAfterOngkir = (detailProduct.totalPrice+17000).toLocaleString('id-ID', {
+    style: 'currency',
+    currency: 'IDR',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0
+  })
 
   const  handleClickBuy = () => {
     if(selectPayment !== null){
@@ -139,7 +155,7 @@ const Checkout = () => {
           <div className="count-price pb-3">
             <div className="subtotal flex items-center justify-between">
               <h6 className='text-[14px] text-slate-500'>Subtotal ( {detailProduct.totalQty} Produk)</h6>
-              <h5 className='text-[18px]'>Rp{detailProduct.totalPrice}</h5>
+              <h5 className='text-[18px]'>{priceBeforeOngkir}</h5>
             </div>
             <div className="expedition-fee flex items-center justify-between pb-3 border-b">
               <h6 className='text-[14px] text-slate-500'>Biaya Pengiriman</h6>
@@ -147,7 +163,7 @@ const Checkout = () => {
             </div>
             <div className="total flex items-center justify-between pt-3">
               <h6 className='text-[14px] text-slate-500'>Total</h6>
-              <h5 className='text-[18px]'>Rp{detailProduct.totalPrice+17000}</h5>
+              <h5 className='text-[18px]'>{priceAfterOngkir}</h5>
             </div>
           </div>
           <button onClick={()=>handleClickBuy(detailProduct)} className='w-full py-2 bg-aksen rounded-lg text-white'>Buat Pesanan</button>
@@ -160,6 +176,30 @@ const Checkout = () => {
           <FaCheckCircle size={60} className='text-green-500 mx-auto'/>
           <h4 className='font-medium text-xl text-slate-700 my-5'>Pesanan Berhasil Dibuat</h4>
           <button onClick={()=>setCreatePesanan(false)} className='w-full bg-aksen py-2 text-white font-medium rounded-lg'>Selesai</button>
+        </div>
+      }
+
+      {/* loading */}
+      {isLoading && 
+        <div className="loading absolute left-0 top-0 right-0 bottom-0 flex items-center justify-center bg-slate-600 bg-opacity-15">
+          <div className="box px-[30px] py-[25px] bg-white rounded-md">
+            <svg class="h-7 w-7 animate-spin stroke-slate-500" viewBox="0 0 256 256">
+              <line x1="128" y1="32" x2="128" y2="64" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"></line>
+              <line x1="195.9" y1="60.1" x2="173.3" y2="82.7" stroke-linecap="round" stroke-linejoin="round"
+                  stroke-width="24"></line>
+              <line x1="224" y1="128" x2="192" y2="128" stroke-linecap="round" stroke-linejoin="round" stroke-width="24">
+              </line>
+              <line x1="195.9" y1="195.9" x2="173.3" y2="173.3" stroke-linecap="round" stroke-linejoin="round"
+                  stroke-width="24"></line>
+              <line x1="128" y1="224" x2="128" y2="192" stroke-linecap="round" stroke-linejoin="round" stroke-width="24">
+              </line>
+              <line x1="60.1" y1="195.9" x2="82.7" y2="173.3" stroke-linecap="round" stroke-linejoin="round"
+                  stroke-width="24"></line>
+              <line x1="32" y1="128" x2="64" y2="128" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"></line>
+              <line x1="60.1" y1="60.1" x2="82.7" y2="82.7" stroke-linecap="round" stroke-linejoin="round" stroke-width="24">
+              </line>
+            </svg>
+          </div>
         </div>
       }
     </div>

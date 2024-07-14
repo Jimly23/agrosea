@@ -32,6 +32,13 @@ const Cart = () => {
       cek(selectedId)
     }
   }, [productList])
+
+  const formatTotalPrice = totalPrice.toLocaleString('id-ID', {
+    style: 'currency',
+    currency: 'IDR',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0
+  });
   
   const cek = (id) => {
     if(isSelectProduct){
@@ -41,21 +48,21 @@ const Cart = () => {
   }
 
   const handleAddQuantity = (id) => {
+    setSelectedId(id)
     setProductList(prevProducts => 
       prevProducts.map(product => 
         product.id === id? {...product, qty: product.qty + 1, total: (product.qty + 1) * product.priceAfterDiscount}:product
       )
     );
-    setSelectedId(id)
   }
 
   const handleReduceQuantity = (id, price) => {
+    setSelectedId(id)
     setProductList(prevProducts => 
       prevProducts.map(product => 
         product.id === id? {...product, qty: product.qty - 1, total: (product.qty - 1) * product.priceAfterDiscount}:product
       )
     );
-    setSelectedId(id)
   }
 
   const handleAllProduct = () => {
@@ -108,7 +115,7 @@ const Cart = () => {
         <div className="detail-cart-product col-span-4">
           <div className="h-[50px] border shadow-sm rounded-lg flex items-center gap-x-3 px-3 font-medium mb-3">
             <div onClick={handleAllProduct} className={`cursor-pointer checkbox w-5 h-5 border-[1px] border-slate-400 rounded flex items-center justify-center text-white ${isAllProduct && 'bg-aksen border-none'}`}>{isAllProduct && <FaCheck size={13}/>}</div>
-            <h5 className='select-none'>Pilih Semua (1)</h5>
+            <h5 className='select-none'>Pilih Semua</h5>
           </div>
           <div className="box-list-product select-none">
             {productList.map((item, index) => (
@@ -122,7 +129,13 @@ const Cart = () => {
                       <p>{item.productName}</p>
                     </div>
                     <div className="product-price col-span-3 lg:col-span-2 font-medium text-lg">
-                      <h6 className='text-center'>Rp{item.priceAfterDiscount}</h6>
+                      {/* <h6 className='text-center'>{item.priceAfterDiscount}</h6> */}
+                      <h6 className='text-center'>{item.priceAfterDiscount.toLocaleString('id-ID', {
+                        style: 'currency',
+                        currency: 'IDR',
+                        minimumFractionDigits: 0,
+                        maximumFractionDigits: 0
+                      })}</h6>
                       <div className="box-qty flex items-center justify-start gap-x-3 mt-2">
                         <button onClick={()=>dispatch(deleteProductInCart(item.id))} className='text-red-600'><FaTrashAlt /></button>
                         <div className="count flex items-center gap-x-5 border px-4 rounded-lg">
@@ -139,33 +152,6 @@ const Cart = () => {
                           <button onClick={()=>handleAddQuantity(item.id)} className='text-slate-600 cursor-pointer'>
                             <FaPlus size={10}/>
                           </button> 
-                          {/* {isSelectProduct === item.id? 
-                            <>
-                              {quantity === 1? 
-                                <button className={` text-slate-600 opacity-50 cursor-pointer`} >
-                                  <FaMinus size={10}/>
-                                </button>
-                              : 
-                                <button onClick={()=>handleReduceQuantity(item.id, item.priceAfterDiscount)} className={`text-slate-600 cursor-pointer`}>
-                                  <FaMinus size={10}/>
-                                </button>
-                              }
-                              <div><h6>{item.qty}</h6></div>
-                              <button onClick={()=>handleAddQuantity(item.id)} className='text-slate-600 cursor-pointer'>
-                                <FaPlus size={10}/>
-                              </button> 
-                            </>
-                            :
-                            <> 
-                              <button className={` text-slate-600 opacity-50 cursor-pointer`} >
-                                <FaMinus size={10}/>
-                              </button>
-                              <div><h6>{item.qty}</h6></div>
-                              <button className='text-slate-600 cursor-pointer'>
-                                <FaPlus size={10}/>
-                              </button>
-                            </>
-                          } */}
                         </div>
                       </div>
                     </div>
@@ -181,7 +167,7 @@ const Cart = () => {
             <VoucherBox />
             <div className="total flex items-center justify-between py-3">
               <h6 className='text-[14px] text-slate-500'>Total</h6>
-              <h5 className='text-[18px]'>Rp{totalPrice}</h5>
+              <h5 className='text-[18px]'>{formatTotalPrice}</h5>
             </div>
             <button onClick={handleCheckout} className='w-full py-2 bg-aksen rounded-lg text-white'>Beli</button>
           </div>

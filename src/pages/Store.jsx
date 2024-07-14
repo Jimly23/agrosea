@@ -3,8 +3,10 @@ import { FaBars, FaBox, FaBoxOpen, FaFileAlt, FaFileInvoice, FaHome, FaPlusCircl
 import DetailTransaction from '../components/molecules/DetailTransaction'
 import AddProductBox from '../components/molecules/AddProductBox'
 import { barangNull, myProfilePic, transactionNull } from '../assets'
+import { useSelector } from 'react-redux'
 
 const Store = () => {
+  const userLogin = useSelector((state)=> state.auth.user)
   const [isMenu, setIsMenu] = useState(1);
   const [isMenuMobile, setIsMenuMobile] = useState(false);
 
@@ -13,7 +15,7 @@ const Store = () => {
     setIsMenuMobile(false)
   }
   return (
-    <div className='w-full px-2 grid grid-cols-1 md:grid-cols-10 -my-9 gap-y-3 md:gap-5 md:-mx-2'>
+    <div className='w-full px-2 grid grid-cols-1 md:grid-cols-10 -my-7 gap-y-3 md:gap-5 md:-mx-2'>
       <div className="flex relative md:hidden pt-5 items-center gap-3">
         <div onClick={()=> setIsMenuMobile(true)} className="menu-bars flex items-center justify-center cursor-pointer w-[40px] h-[40px] border rounded-md">
           <FaBars />
@@ -31,10 +33,10 @@ const Store = () => {
           </ul>
         </div>
       </div>
-      <div className="hidden md:block col-span-3 lg:col-span-2 w-full h-[93.2vh] border">
+      <div className="hidden md:block col-span-3 lg:col-span-2 w-full h-[92.2vh] border">
         <div className="header flex items-center gap-x-3 font-medium bg-slate-100 p-3">
           <div className="profil-pic w-10 h-10 rounded-full border shadow-sm overflow-hidden"><img src={myProfilePic} className='w-full h-full object-cover' /></div>
-          <h4 className='text-lg'>Waluyo</h4>
+          <h4 className='text-lg'>{userLogin.username}</h4>
         </div>
         <div className="menu font-medium">
           <ul className='py-5 mt-3 text-slate-700'>

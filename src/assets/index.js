@@ -6,8 +6,8 @@ import profilePic from './profile-pic.jpg'
 import customerPic from './customerPic.jpg'
 import myProfilePic from './myProfilePic.jpg'
 
-import productPadi from './produk-padi.jpg'
-import productPadi2 from './product-padi2.jpg'
+import productPadi2 from './produk-padi.jpg'
+import productPadi from './product-padi2.jpg'
 import productPadi3 from './product-padi3.jpeg'
 import productPadi4 from './product-padi4.jpg'
 import productPadi5 from './product-padi5.jpeg'
@@ -49,16 +49,64 @@ import productUdang4 from './produk-udang4.jpg'
 import productUdang5 from './produk-udang5.jpg'
 
 import productBitCabai from './product-images/bibitCabai.jpg'
+import productBitCabai2 from './product-images/bibitCabai2.jpeg'
+import productBitCabai3 from './product-images/bibitCabai3.jpeg'
+import productBitCabai4 from './product-images/bibitCabai4.jpg'
+import productBitCabai5 from './product-images/bibitCabai5.jpg'
+
 import productBitHerbal from './product-images/bibitHerbal.jpg'
+import productBitHerbal2 from './product-images/bibitHerbal2.jpeg'
+import productBitHerbal3 from './product-images/bibitHerbal3.jpg'
+import productBitHerbal4 from './product-images/bibitHerbal4.jpeg'
+import productBitHerbal5 from './product-images/bibitHerbal5.jpeg'
+
 import productBitSayur from './product-images/bibitSayur.png'
+import productBitSayur2 from './product-images/bibitSayur2.jpg'
+import productBitSayur3 from './product-images/bibitSayur3.jpg'
+import productBitSayur4 from './product-images/bibitSayur4.jpg'
+import productBitSayur5 from './product-images/bibitSayur5.jpg'
+
 import productRempah from './product-images/rempah.jpeg'
+import productRempah2 from './product-images/rempah2.jpg'
+import productRempah3 from './product-images/rempah3.jpg'
+import productRempah4 from './product-images/rempah4.jpg'
+import productRempah5 from './product-images/rempah5.jpg'
+
 import productKit from './product-images/kit.jpg'
+import productKit2 from './product-images/kit2.jpeg'
+import productKit3 from './product-images/kit3.jpeg'
+import productKit4 from './product-images/kit4.jpeg'
+import productKit5 from './product-images/kit5.jpeg'
 
 import bandeng from './product-images/ikanBandeng.jpg'
+import bandeng2 from './product-images/ikanBandeng2.jpg'
+import bandeng3 from './product-images/ikanBandeng3.jpg'
+import bandeng4 from './product-images/ikanBandeng4.jpg'
+import bandeng5 from './product-images/ikanBandeng5.jpg'
+
 import gurame from './product-images/ikanGurame.jpg'
+import gurame2 from './product-images/ikanGurame2.png'
+import gurame3 from './product-images/ikanGurame3.jpg'
+import gurame4 from './product-images/ikanGurame4.jpeg'
+import gurame5 from './product-images/ikanGurame5.jpeg'
+
 import lele from './product-images/ikanLele.jpg'
+import lele2 from './product-images/ikanLele2.png'
+import lele3 from './product-images/ikanLele3.jpeg'
+import lele4 from './product-images/ikanLele4.png'
+import lele5 from './product-images/ikanLele5.jpg'
+
 import patin from './product-images/ikanPatin.png'
+import patin2 from './product-images/ikanPatin2.jpg'
+import patin3 from './product-images/ikanPatin3.jpg'
+import patin4 from './product-images/ikanPatin4.jpeg'
+import patin5 from './product-images/ikanPatin5.jpg'
+
 import kepiting from './product-images/kepiting.jpg'
+import kepiting2 from './product-images/kepiting2.jpg'
+import kepiting3 from './product-images/kepiting3.jpg'
+import kepiting4 from './product-images/kepiting4.jpeg'
+import kepiting5 from './product-images/kepiting5.jpeg'
 
 
 import vectorStore from './vectorStore.png'
@@ -102,5 +150,8 @@ export {
   productTelur4,productTelur5,productUdang,productUdang2,productUdang3,productUdang4,productUdang5,vectorStore,
   vectorImg,logoText,logoTextFooter,logoAgro,logoMarina,danaLogo,akulakuLogo,alfamartLogo,bcaLogo,bniLogo,briLogo,
   gopayLogo,indomaretLogo,kredivoLogo,linkajaLogo,mandiriLogo,ovoLogo,loginLogo,productBitCabai,productBitHerbal,productBitSayur,
-  productKit,productRempah,bandeng,gurame,lele,patin,kepiting,searchProduct,logoAgroMarina
+  productKit,productRempah,bandeng,gurame,lele,patin,kepiting,searchProduct,logoAgroMarina,productBitCabai2,productBitCabai3,productBitCabai4,productBitCabai5,
+  productBitHerbal2,productBitHerbal3,productBitHerbal4,productBitHerbal5,productRempah2,productRempah3,productRempah4,productRempah5,
+  productBitSayur2,productBitSayur3,productBitSayur4,productBitSayur5,kepiting2,kepiting3,kepiting4,kepiting5,productKit2,productKit3,productKit4,productKit5,
+  bandeng2,bandeng3,bandeng4,bandeng5,gurame2,gurame3,gurame4,gurame5,lele2,lele3,lele4,lele5,patin2,patin3,patin4,patin5
 }

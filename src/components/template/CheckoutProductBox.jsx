@@ -11,7 +11,13 @@ const CheckoutProductBox = ({products, productImage, productName, productPrice, 
           <div className="product-image col-span-2 w-[70px] h-[70px] rounded overflow-hidden mb-3 md:mb-0"><img src={item.productImage} className='w-full h-full object-cover' /></div>
           <div className="product-desc col-span-6 font-medium text-lg">{item.productName}</div>
           <div className="product-price col-span-2 font-medium text-lg">
-            <h6>{item.qty} x Rp{item.priceAfterDiscount}</h6>
+            <h6>{item.qty} x {item.priceAfterDiscount.toLocaleString('id-ID', {
+              style: 'currency',
+              currency: 'IDR',
+              minimumFractionDigits: 0,
+              maximumFractionDigits: 0
+            })}</h6>
+            {/* <h6>{item.qty} x Rp{item.priceAfterDiscount}</h6> */}
           </div>
         </div>
       ))}
