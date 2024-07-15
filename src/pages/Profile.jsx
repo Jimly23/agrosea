@@ -116,33 +116,33 @@ const Profile = () => {
           <>
             <div className="border shadow-sm rounded-lg p-2 sm:p-5 grid grid-cols-4">
               <div className="before-pay flex flex-col justify-center items-center gap-1 p-2 rounded-md">
-                <div onClick={()=>setIsMenuOrder(1)} className={`${isMenuOrder === 1? 'bg-blue-100 border-blue-400 text-blue-500':'bg-white text-slate-600'}  py-4 cursor-pointer w-[80px] border rounded-md flex items-center flex-col justify-center`}>
+                <div onClick={()=>setIsMenuOrder(1)} className={`${isMenuOrder === 1? 'bg-blue-100 border-blue-400 text-blue-500':'bg-white text-slate-600'}  py-4 cursor-pointer w-[70px] sm:w-[90px] border rounded-md flex items-center flex-col justify-center`}>
                   <FaWallet size={25}/>
-                  <p className='text-[12px] sm:text-normal'>Belum Bayar</p>
+                  <p className='text-[10px] sm:text-normal'>Belum Bayar</p>
                 </div>
               </div>
               <div className="before-pay flex flex-col justify-center items-center gap-1">
-                <div onClick={()=>setIsMenuOrder(2)} className={`${isMenuOrder === 2? 'bg-blue-100 border-blue-400 text-blue-500':'bg-white text-slate-600'} relative py-4 cursor-pointer w-[80px] border rounded-md flex items-center flex-col justify-center`}>
+                <div onClick={()=>setIsMenuOrder(2)} className={`${isMenuOrder === 2? 'bg-blue-100 border-blue-400 text-blue-500':'bg-white text-slate-600'} relative py-4 cursor-pointer w-[70px] sm:w-[90px] border rounded-md flex items-center flex-col justify-center`}>
                   <FaBox size={25}/>
-                  <p className='text-[12px] sm:text-normal'>Dikemas</p>
+                  <p className='text-[10px] sm:text-normal'>Dikemas</p>
 
                   {getListProduct.length !== 0 &&
-                    <div className="notification w-5 h-5 rounded-full bg-red-500 absolute top-[-5px] right-[-5px] font-medium text-white text-[12px] flex items-center justify-center">
+                    <div className="notification w-5 h-5 rounded-full bg-red-500 absolute top-[-5px] right-[-5px] font-medium text-white text-[10px] flex items-center justify-center">
                       {getListProduct.length}
                     </div>
                   }
                 </div>
               </div>
               <div className="before-pay flex flex-col justify-center items-center gap-1">
-                <div onClick={()=>setIsMenuOrder(3)} className={`${isMenuOrder === 3? 'bg-blue-100 border-blue-400 text-blue-500':'bg-white text-slate-600'}  py-4 cursor-pointer w-[80px] border rounded-md flex items-center flex-col justify-center`}>
+                <div onClick={()=>setIsMenuOrder(3)} className={`${isMenuOrder === 3? 'bg-blue-100 border-blue-400 text-blue-500':'bg-white text-slate-600'}  py-4 cursor-pointer w-[70px] sm:w-[90px] border rounded-md flex items-center flex-col justify-center`}>
                   <FaTruck size={25}/>
-                  <p className='text-[12px] sm:text-normal'>Dikirim</p>
+                  <p className='text-[10px] sm:text-normal'>Dikirim</p>
                 </div>
               </div>
               <div className="before-pay flex flex-col justify-center items-center gap-1">
-                <div onClick={()=>setIsMenuOrder(4)} className={`${isMenuOrder === 4? 'bg-blue-100 border-blue-400 text-blue-500':'bg-white text-slate-600'}  py-4 cursor-pointer w-[80px] border rounded-md flex items-center flex-col justify-center`}>
+                <div onClick={()=>setIsMenuOrder(4)} className={`${isMenuOrder === 4? 'bg-blue-100 border-blue-400 text-blue-500':'bg-white text-slate-600'}  py-4 cursor-pointer w-[70px] sm:w-[90px] border rounded-md flex items-center flex-col justify-center`}>
                   <FaStar size={25}/>
-                  <p className='text-[12px] sm:text-normal'>Beri Penilaian</p>
+                  <p className='text-[10px] sm:text-normal'>Beri Penilaian</p>
                 </div>
               </div>
             </div>

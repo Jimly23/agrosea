@@ -51,26 +51,26 @@ const Education = () => {
 
         {/* education agro */}
         <EducationPart title={'Agro'}>
-            <CardEducation img={agroEdu1} />
-            <CardEducation img={agroEdu2} />
-            <CardEducation img={agroEdu3} />
-            <CardEducation img={agroEdu4} />
-            <CardEducation img={agroEdu5} />
-            <CardEducation img={agroEdu6} />
-            <CardEducation img={agroEdu7} />
-            <CardEducation img={agroEdu8} />
+            <CardEducation img={agroEdu1} title={'Cara Cek Gabah Berkualitas'} />
+            <CardEducation img={agroEdu2} title={'Tips efektif menanam padi'} />
+            <CardEducation img={agroEdu3} title={'Cara Menanam Jagung'} />
+            <CardEducation img={agroEdu4} title={'Tips Panen Jagung'} />
+            <CardEducation img={agroEdu5} title={'Tips Memanen Bawang Merah'} />
+            <CardEducation img={agroEdu6} title={'Cara Menanam Bawang Merah'} />
+            <CardEducation img={agroEdu7} title={'Cara Menanama Cabai'} />
+            <CardEducation img={agroEdu8} title={'Produk Olahan Dari Singkong'} />
         </EducationPart>
 
         {/* education marina */}
         <EducationPart title={'Marina'}>
-            <CardEducation img={marinaEdu1} />
-            <CardEducation img={marinaEdu2} />
-            <CardEducation img={marinaEdu3} />
-            <CardEducation img={marinaEdu4} />
-            <CardEducation img={marinaEdu5} />
-            <CardEducation img={marinaEdu6} />
-            <CardEducation img={marinaEdu7} />
-            <CardEducation img={marinaEdu8} />
+            <CardEducation img={marinaEdu1} title={'Cara Budidaya Ikan Mas'} />
+            <CardEducation img={marinaEdu2} title={'Cara Budidaya Ikan Lele'} />
+            <CardEducation img={marinaEdu3} title={'Cara Budidaya Rumput Laut'} />
+            <CardEducation img={marinaEdu4} title={'Cara Budidaya Rumput Laut'} />
+            <CardEducation img={marinaEdu5} title={'Cara Membuat Garam'} />
+            <CardEducation img={marinaEdu6} title={'Cara Budidaya Lobster'} />
+            <CardEducation img={marinaEdu7} title={'Cara Menjaring Ikan'} />
+            <CardEducation img={marinaEdu8} title={'Cara Membuat Perahu'} />
         </EducationPart>
       </main>
       

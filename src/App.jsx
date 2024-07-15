@@ -15,6 +15,7 @@ import ProtectedRoute from "./pages/ProtectedRoute";
 import NotFound from "./pages/NotFound";
 import { useEffect, useState } from "react";
 import Education from "./pages/Education";
+import DetailEducation from "./pages/DetailEducation";
 
 const Layout = () => {
   const location = useLocation();
@@ -22,7 +23,7 @@ const Layout = () => {
   const shouldShowNavbar = !pathsWithoutNavbar.includes(location.pathname) && ['/home','/profile','/store','/cart','/checkout','/detail-product'].includes(location.pathname);
 
   return (
-    <>
+    <div className="font-Poppins">
       {shouldShowNavbar && <Navbar />}
       <div className="pt-[100px]">
         <Routes>
@@ -36,11 +37,12 @@ const Layout = () => {
             <Route path="/checkout" element={<Checkout />}/>
             <Route path="/detail-product" element={<DetailProduct />}/>
             <Route path="/education" element={<Education />}/>
+            <Route path="/detail-materi" element={<DetailEducation />}/>
           </Route>
           <Route path="*" element={<NotFound />}/>
         </Routes>
       </div>
-    </>
+    </div>
   )
 }
 

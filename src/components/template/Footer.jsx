@@ -24,7 +24,7 @@ const Footer = () => {
             <li className='mb-2'>Karir di Agrosea</li>
             <li className='mb-2'>Aturan Penggunaan</li>
             <li className='mb-2'>Promo Hari Ini</li>
-            <li className='mb-2'>Blog Agrosea</li>
+            <li className='mb-2'>Agrosea Academy</li>
             <li className='mb-2'>FAQ (Tanya Jawab)</li>
           </ul>
         </div>
