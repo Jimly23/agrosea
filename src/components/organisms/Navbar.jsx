@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { FaCartPlus, FaHome, FaSearch, FaStoreAlt, FaUserAlt } from 'react-icons/fa'
+import { FaBook, FaCartPlus, FaHome, FaSearch, FaStoreAlt, FaUserAlt } from 'react-icons/fa'
 import { FaBars } from 'react-icons/fa6'
 import { Link, useNavigate } from 'react-router-dom'
 import { logoText, searchProduct } from '../../assets'
@@ -76,6 +76,11 @@ const Navbar = () => {
               <FaStoreAlt size={18}/>
             </div>
           </Link>
+          <a href="/education" target="_blank" rel="noopener noreferrer">
+            <div className="store p-2 border rounded text-white">
+              <FaBook size={18}/>
+            </div>
+          </a>
           <Link to={'/profile'}>
             <div className="profile p-2 border rounded text-white">
               <FaUserAlt size={18}/>

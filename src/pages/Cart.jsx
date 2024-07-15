@@ -99,7 +99,15 @@ const Cart = () => {
 
   const handleCheckout = () => {
     if(isSelectProduct || isAllProduct){
-      navigate('/checkout', {state: productInformation})
+      if(productInformation.length == 0){
+        Swal.fire({
+          title: "Cart masih kosong",
+          text: "",
+          icon: "warning"
+        });
+      }else {
+        navigate('/checkout', {state: productInformation})
+      }
     } else {
       Swal.fire({
         title: "Pilih produk terlebih dahulu",

@@ -6,7 +6,8 @@ import { barangNull, myProfilePic, transactionNull } from '../assets'
 import { useSelector } from 'react-redux'
 
 const Store = () => {
-  const userLogin = useSelector((state)=> state.auth.user)
+  const userLogin = useSelector((state) => state.auth.user)? useSelector((state) => state.auth.user) : 'User' 
+
   const [isMenu, setIsMenu] = useState(1);
   const [isMenuMobile, setIsMenuMobile] = useState(false);
 

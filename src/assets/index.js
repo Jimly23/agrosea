@@ -131,6 +131,7 @@ import linkajaLogo from './payment/linkaja.png'
 import mandiriLogo from './payment/mandiri.png'
 import ovoLogo from './payment/ovo.png'
 import loginLogo from './logoLogin.png'
+import agroseaAcademy from './logoAcademy.png'
 
 
 import iklan1 from './iklan1.png'
@@ -139,7 +140,32 @@ import iklan3 from './iklan3.png'
 
 import transactionNull from './transaksiKosong.jpg'
 import barangNull from './barangKosong.png'
+import trukVector from './trukVector.png'
+import walletVector from './walletVector.png'
+import starVector from './starVector.png'
+import boxOpenVector from './vectorBoxOpen.jpg'
 
+import trending1 from './education-image/trending1.jpg'
+import trending2 from './education-image/trending2.jpg'
+import trending3 from './education-image/trending3.jpg'
+
+import agroEdu1 from './education-image/agroedu1.jpeg'
+import agroEdu2 from './education-image/agroedu2.jpg'
+import agroEdu3 from './education-image/agroedu3.jpg'
+import agroEdu4 from './education-image/agroedu4.jpg'
+import agroEdu5 from './education-image/agroedu5.png'
+import agroEdu6 from './education-image/agroedu6.jpg'
+import agroEdu7 from './education-image/agroedu7.jpg'
+import agroEdu8 from './education-image/agroedu8.jpg'
+
+import marinaEdu1 from './education-image/marinaedu1.jpg'
+import marinaEdu2 from './education-image/marinaedu2.jpg'
+import marinaEdu3 from './education-image/marinaedu3.jpg'
+import marinaEdu4 from './education-image/marinaedu4.jpeg'
+import marinaEdu5 from './education-image/marinaedu5.jpg'
+import marinaEdu6 from './education-image/marinaedu6.jpg'
+import marinaEdu7 from './education-image/marinaedu7.jpg'
+import marinaEdu8 from './education-image/marinaedu8.jpg'
 
 export {
   danaPayment,gopayPayment,ovoPayment,debitPayment,productPadi,productPadi2,productPadi3,
@@ -153,5 +179,7 @@ export {
   productKit,productRempah,bandeng,gurame,lele,patin,kepiting,searchProduct,logoAgroMarina,productBitCabai2,productBitCabai3,productBitCabai4,productBitCabai5,
   productBitHerbal2,productBitHerbal3,productBitHerbal4,productBitHerbal5,productRempah2,productRempah3,productRempah4,productRempah5,
   productBitSayur2,productBitSayur3,productBitSayur4,productBitSayur5,kepiting2,kepiting3,kepiting4,kepiting5,productKit2,productKit3,productKit4,productKit5,
-  bandeng2,bandeng3,bandeng4,bandeng5,gurame2,gurame3,gurame4,gurame5,lele2,lele3,lele4,lele5,patin2,patin3,patin4,patin5
+  bandeng2,bandeng3,bandeng4,bandeng5,gurame2,gurame3,gurame4,gurame5,lele2,lele3,lele4,lele5,patin2,patin3,patin4,patin5,
+  trukVector,walletVector,starVector,boxOpenVector,trending1,trending2,trending3,agroEdu1,agroEdu2,agroEdu3,agroEdu4,agroEdu5,agroEdu6,agroEdu7,agroEdu8,
+  marinaEdu1,marinaEdu2,marinaEdu3,marinaEdu4,marinaEdu5,marinaEdu6,marinaEdu7,marinaEdu8,agroseaAcademy
 }

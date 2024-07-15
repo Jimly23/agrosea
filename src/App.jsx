@@ -14,10 +14,11 @@ import ChatBot from "./components/template/ChatBot";
 import ProtectedRoute from "./pages/ProtectedRoute";
 import NotFound from "./pages/NotFound";
 import { useEffect, useState } from "react";
+import Education from "./pages/Education";
 
 const Layout = () => {
   const location = useLocation();
-  const pathsWithoutNavbar = ['/', '/register'];
+  const pathsWithoutNavbar = ['/', '/register', '/education'];
   const shouldShowNavbar = !pathsWithoutNavbar.includes(location.pathname) && ['/home','/profile','/store','/cart','/checkout','/detail-product'].includes(location.pathname);
 
   return (
@@ -34,6 +35,7 @@ const Layout = () => {
             <Route path="/cart" element={<Cart />}/>
             <Route path="/checkout" element={<Checkout />}/>
             <Route path="/detail-product" element={<DetailProduct />}/>
+            <Route path="/education" element={<Education />}/>
           </Route>
           <Route path="*" element={<NotFound />}/>
         </Routes>
