@@ -2,7 +2,7 @@ import React from 'react'
 
 const DetailTransaction = ({title, col1, col2, col3}) => {
   return (
-    <div className='border shadow-sm rounded-lg'>
+    <div className='border shadow-sm rounded-lg bg-white'>
       <div className="header p-3 border-b font-medium"><h5>{title}</h5></div>
       <div className="main grid grid-cols-3 text-center">
         <div className='p-3'>

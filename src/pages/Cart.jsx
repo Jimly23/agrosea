@@ -118,16 +118,16 @@ const Cart = () => {
   }
 
   return (
-    <>
+    <div className='mt-[-28px] pt-[28px]'>
       <div className='max-w-[1280px] min-h-[90vh] mx-auto px-2 grid grid-cols-1 md:grid-cols-6 gap-y-3 md:gap-5'>
         <div className="detail-cart-product col-span-4">
-          <div className="h-[50px] border shadow-sm rounded-lg flex items-center gap-x-3 px-3 font-medium mb-3">
+          <div className="h-[50px] border shadow-sm rounded-lg flex items-center gap-x-3 px-3 font-medium mb-3 bg-white">
             <div onClick={handleAllProduct} className={`cursor-pointer checkbox w-5 h-5 border-[1px] border-slate-400 rounded flex items-center justify-center text-white ${isAllProduct && 'bg-aksen border-none'}`}>{isAllProduct && <FaCheck size={13}/>}</div>
             <h5 className='select-none'>Pilih Semua</h5>
           </div>
           <div className="box-list-product select-none">
             {productList.map((item, index) => (
-              <div key={index} className="product-item border rounded-lg shadow-sm p-3 mb-3 pt-6">
+              <div key={index} className="product-item border rounded-lg shadow-sm p-3 mb-3 pt-6 bg-white">
                 <div className="flex items-center mb-3 gap-x-3">
                   <div onClick={()=>handleSelectProduct(item)} className={`cursor-pointer checkbox w-5 h-5 border-[1px] border-slate-400 rounded flex items-center justify-center text-white ${isAllProduct && 'bg-aksen border-none' || isSelectProduct === item.id && 'bg-aksen border-none'}`}>{isAllProduct && <FaCheck size={13}/> || isSelectProduct === item.id && <FaCheck size={13}/>}</div>
                   <div className="box-product grid grid-cols-1 md:grid-cols-10 w-full">
@@ -170,7 +170,7 @@ const Cart = () => {
           </div>
         </div>
         <div className="detail-product-price col-span-2 w-full font-medium">
-          <div className="box-detail-price border shadow-sm p-4 pb-5 rounded-lg">
+          <div className="box-detail-price border shadow-sm p-4 pb-5 rounded-lg bg-white">
             <h4 className='text-xl border-b pb-3 mb-3'>Ringkasan Pesanan</h4>
             <VoucherBox />
             <div className="total flex items-center justify-between py-3">
@@ -182,7 +182,7 @@ const Cart = () => {
         </div>
       </div>
       <Footer />
-    </>
+    </div>
   )
 }
 

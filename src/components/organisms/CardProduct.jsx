@@ -18,8 +18,8 @@ const CardProduct = ({productInformation}) => {
   });
   
   return (
-    <div onClick={handleNavigateClick} className='w-full p-1 h-[250px] sm:h-[320px] rounded-lg border cursor-pointer'>
-      <div className="box-image w-full bg-slate-300 h-[55%] sm:h-[60%] rounded overflow-hidden">
+    <div onClick={handleNavigateClick} className='w-full p-1 h-[250px] sm:h-[320px] rounded-lg border cursor-pointer bg-white'>
+      <div className="box-image w-full h-[55%] sm:h-[60%] rounded overflow-hidden">
         <img src={productInformation.productImage[0]} className='w-full h-full object-cover' />
       </div>
       <div className="desc font-normal">
