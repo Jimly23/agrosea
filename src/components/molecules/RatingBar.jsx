@@ -10,7 +10,6 @@ const RatingBar = ({rating, progress}) => {
       </div>
       <div className="progres-bar w-[85%] bg-slate-200 rounded-full h-[5px]">
         <div className={`h-full w-[${progress}] bg-yellow-400 rounded-full`}></div>
-        {/* <div className={`bg-yellow-400 h-full w-[${progress && progress}%] rounded-full`}></div> */}
       </div>
     </div>
   )

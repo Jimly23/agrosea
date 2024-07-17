@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { FaEye, FaRegEye, FaRegEyeSlash } from 'react-icons/fa'
+import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa'
 
 const InputBox = ({name, title, optional, type, placeholder, style, include, updateValue}) => {
   const [isShowPassword, setIsShowPassword] = useState(false);

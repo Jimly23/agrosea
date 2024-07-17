@@ -1,16 +1,14 @@
-import React, { useState, PureComponent, useEffect } from 'react'
-import { FaBars, FaBox, FaBoxOpen, FaFileAlt, FaFileInvoice, FaHome, FaPlusCircle, FaWallet } from 'react-icons/fa'
+import React, { useState, useEffect } from 'react'
+import { FaBars, FaBoxOpen,  FaFileInvoice, FaHome, FaPlusCircle } from 'react-icons/fa'
 import DetailTransaction from '../components/molecules/DetailTransaction'
 import AddProductBox from '../components/molecules/AddProductBox'
-import { barangNull, myProfilePic, transactionNull } from '../assets'
-import { useSelector } from 'react-redux'
+import { myProfilePic } from '../assets'
 import Cookies from 'js-cookie'
 import ChartTransaction from '../components/template/ChartTransaction'
-import { BarChart, Bar, Rectangle, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line } from 'recharts';
 import CardBalance from '../components/organisms/CardBalance'
 import TransactionStore from '../components/template/TransactionStore'
-import { getProductByUserId, getUserById } from '../api/api'
-import CardProduct from '../components/organisms/CardProduct'
+import { getUserById } from '../api/api'
 import ProductsStore from '../components/template/ProductsStore'
 
 const data = [

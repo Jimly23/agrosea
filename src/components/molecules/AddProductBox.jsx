@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
 import Cookies from 'js-cookie'
 import Swal from 'sweetalert2'
-import { FaUpload } from 'react-icons/fa'
 import InputBox from '../Atoms/InputBox'
 import TextBox from '../Atoms/TextBox'
-import { logoAgro, vectorImg } from '../../assets'
+import { vectorImg } from '../../assets'
 import CategoryProduct from '../organisms/CategoryProduct'
 import { addProduct } from '../../api/api'
 
@@ -77,7 +76,6 @@ const AddProductBox = ({onIsMenu, updateProduct}) => {
               <img src={vectorImg} className='w-[50%]' />
             </div>
           </div>
-          {/* <button type='file' className='px-3 py-2 border text-slate-600 rounded-md ms-3 text-[14px] flex items-center gap-x-2'><FaUpload /> <span>Unggah Foto</span></button> */}
           <input type="file" onChange={handleFileChange} className='p-1 rounded-md ms-3 text-[14px]'/>
         </div>
       </div>

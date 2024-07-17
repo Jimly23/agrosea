@@ -1,10 +1,8 @@
 import React, { useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { agroEdu1, agroEdu2, agroEdu3, agroEdu4, agroEdu5, agroEdu6, agroEdu7, agroEdu8, agroseaAcademy, logoText, marinaEdu1, marinaEdu2, marinaEdu3, marinaEdu4, marinaEdu5, marinaEdu6, marinaEdu7, marinaEdu8, trending1, trending2, trending3 } from '../assets'
+import { agroseaAcademy } from '../assets'
 import { FaSearch } from 'react-icons/fa'
-import CardEducation from '../components/organisms/CardEducation'
 import Footer from '../components/template/Footer'
-import EducationPart from '../components/template/EducationPart'
 import { Helmet } from 'react-helmet'
 
 const DetailEducation = () => {

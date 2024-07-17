@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import { FaCheckCircle, FaCircle, FaRegCircle } from 'react-icons/fa'
+import { FaCheckCircle, FaRegCircle } from 'react-icons/fa'
 
-const CheckoutProductBox = ({products, productImage, productName, productPrice, qty}) => {
+const CheckoutProductBox = ({products}) => {
   const [chooseExpedition, setChooseExpedition] = useState(1);
   return (
     <div className='rounded-lg overflow-hidden border shadow-sm'>
@@ -17,7 +17,6 @@ const CheckoutProductBox = ({products, productImage, productName, productPrice, 
               minimumFractionDigits: 0,
               maximumFractionDigits: 0
             })}</h6>
-            {/* <h6>{item.qty} x Rp{item.priceAfterDiscount}</h6> */}
           </div>
         </div>
       ))}

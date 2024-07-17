@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import { FaCheckCircle, FaMinus, FaPlus, FaStar, FaTrophy } from 'react-icons/fa';
+import { FaMinus, FaPlus } from 'react-icons/fa';
 import {useDispatch} from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { addCart } from '../../reducers/cartReducers';
 import { getProducts } from '../../api/api';
 import Swal from 'sweetalert2';
 import CardStore from './CardStore';
 
-const SidebarDetailPrice = ({productId, productImage, productName, priceAfterDiscount}) => {
+const SidebarDetailPrice = ({productId, priceAfterDiscount}) => {
   const navigate = useNavigate();
   const dispatch = useDispatch()
 
@@ -21,12 +21,6 @@ const SidebarDetailPrice = ({productId, productImage, productName, priceAfterDis
     maximumFractionDigits: 0
   });
 
-  const formatPrice = priceAfterDiscount.toLocaleString('id-ID', {
-    style: 'currency',
-    currency: 'IDR',
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 0
-  });
 
   const getProductById = () => {
     const getProduct = getProducts().find(p => p.id === productId)

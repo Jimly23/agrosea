@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { FaCheck, FaCheckCircle, FaIdCard } from 'react-icons/fa'
+import { FaCheckCircle } from 'react-icons/fa'
 import CardPayment from '../components/molecules/CardPayment'
 import CheckoutProductBox from '../components/template/CheckoutProductBox'
-import { akulakuLogo, alfamartLogo, bcaLogo, bniLogo, briLogo, danaLogo, danaPayment, debitPayment, gopayLogo, indomaretLogo, kredivoLogo, linkajaLogo, mandiriLogo, ovoLogo } from '../assets'
+import { akulakuLogo, alfamartLogo, bcaLogo, bniLogo, briLogo, danaLogo, gopayLogo, indomaretLogo, kredivoLogo, linkajaLogo, mandiriLogo, ovoLogo } from '../assets'
 import VoucherBox from '../components/molecules/VoucherBox'
 import { useLocation, useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
@@ -13,8 +13,7 @@ const Checkout = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-  const productInformation = location.state || null
-  // console.log(productInformation);
+  const productInformation = location.state || null;
   const [createPesanan, setCreatePesanan] = useState(false);
   const [selectPayment, setSelectPayment] = useState(null);
   const [isShowAllPayment, setIsShowAllPayment] = useState(false)

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { FaCheck, FaMinus, FaPlus, FaRecycle, FaSquare, FaTrashAlt } from 'react-icons/fa'
+import { FaCheck, FaMinus, FaPlus, FaTrashAlt } from 'react-icons/fa'
 import VoucherBox from '../components/molecules/VoucherBox';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Footer from '../components/template/Footer';
 import { deleteProductInCart } from '../reducers/cartReducers';
 import Swal from 'sweetalert2'

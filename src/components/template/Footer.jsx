@@ -1,7 +1,6 @@
 import React from 'react'
-import { FaCopyright, FaFacebook, FaInstagram, FaLinkedin, FaRegCopyright, FaTiktok, FaTwitter } from 'react-icons/fa'
-import { akulakuLogo, alfamartLogo, bcaLogo, bniLogo, briLogo, danaLogo, gopayLogo, indomaretLogo, kredivoLogo, linkajaLogo, logoText, logoTextFooter, mandiriLogo, ovoLogo } from '../../assets'
-import { Link } from 'react-router-dom'
+import { FaInstagram, FaLinkedin, FaRegCopyright, FaTiktok, FaTwitter } from 'react-icons/fa'
+import { akulakuLogo, alfamartLogo, bcaLogo, bniLogo, briLogo, danaLogo, gopayLogo, indomaretLogo, kredivoLogo, linkajaLogo, logoTextFooter, mandiriLogo, ovoLogo } from '../../assets'
 
 const Footer = () => {
   return (
@@ -59,7 +58,6 @@ const Footer = () => {
         <div className="box">
           <h5 className='font-medium mb-3'>Ikuti Kami</h5>
           <ul className='text-[14px] text-slate-600'>
-            {/* <li className='mb-2 flex items-center gap-x-2'><FaFacebook  size={18}/> <Link to={'https://www.instagram.com/jmyassdqi/'}>Facebook</Link></li> */}
             <li className='mb-2 flex items-center gap-x-2'><FaInstagram  size={18}/> <a href="https://www.instagram.com/jmyassdqi/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
             <li className='mb-2 flex items-center gap-x-2'><FaTiktok  size={18}/> <a href="https://www.tiktok.com/@jimlyassidqi" target="_blank" rel="noopener noreferrer">Tiktok</a></li>
             <li className='mb-2 flex items-center gap-x-2'><FaLinkedin  size={18}/> <a href="https://www.linkedin.com/in/jimly-assidqi-hardiansyah-b01b4a283/" target="_blank" rel="noopener noreferrer">Linkedin</a></li>

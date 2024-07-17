@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
-import { loginLogo, logoTextFooter } from '../assets'
 import InputBox from '../components/Atoms/InputBox'
-import { Link } from 'react-router-dom'
 import Auth from '../components/template/Auth'
 
 const Login = () => {

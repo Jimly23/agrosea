@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { FaBook, FaBookOpen, FaCartPlus, FaHome, FaSearch, FaStoreAlt, FaUserAlt } from 'react-icons/fa'
+import { FaBookOpen, FaCartPlus, FaHome, FaSearch, FaStoreAlt, FaUserAlt } from 'react-icons/fa'
 import { FaBars, FaCartShopping } from 'react-icons/fa6'
 import { Link, useNavigate } from 'react-router-dom'
 import { logoText, searchProduct } from '../../assets'
-import { getProducts, getProductsById, getProductsByName } from '../../api/api'
+import { getProducts, getProductsById } from '../../api/api'
 import Tooltip from '../molecules/Tooltip'
 
 const Navbar = () => {
@@ -29,9 +29,8 @@ const Navbar = () => {
     const intervalId = setInterval(() => {
       index = (index + 1) % placeholders.length;
       setPlaceholder(placeholders[index]);
-    }, 5000); // Ubah setiap 5 detik
-
-    // Cleanup interval on component unmount
+    }, 5000); 
+    
     return () => clearInterval(intervalId);
   }, []);
 

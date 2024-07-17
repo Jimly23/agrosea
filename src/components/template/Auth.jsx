@@ -2,12 +2,11 @@ import React, { useState } from 'react'
 import { loginLogo, logoTextFooter } from '../../assets'
 import { Link, useNavigate } from 'react-router-dom'
 import { FaCheck } from 'react-icons/fa';
-import axios from 'axios';
 import Cookies from 'js-cookie'
 import { login, register } from '../../api/api';
 import Swal from 'sweetalert2'
 import { useDispatch } from 'react-redux';
-import { setAuth, setUser } from '../../reducers/authReducers';
+import { setAuth } from '../../reducers/authReducers';
 
 const Auth = ({children, title, txtButton, link, redirectPage, dataUser}) => {
   const dispatch = useDispatch();
@@ -68,7 +67,6 @@ const Auth = ({children, title, txtButton, link, redirectPage, dataUser}) => {
       if(typeof(response) == 'object'){
         dispatch(setAuth(true))
         Cookies.set('userID', response.id, { expires: 7 });
-        // dispatch(setUser(response))
         navigate('/home')
       } else {
         handleError(response)
@@ -104,7 +102,6 @@ const Auth = ({children, title, txtButton, link, redirectPage, dataUser}) => {
               <button type='submit' className='w-full bg-aksen rounded-md py-2 font-medium text-white mt-8'>{txtButton}</button>
             </form>
             {txtButton == 'Login'? 
-              // <p className='text-[14px] py-1 mt-1'>Lupa password? <span className=' text-aksen underline'>klik disini</span></p>
               <></>
               :
               <div className='mt-4'>
