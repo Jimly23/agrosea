@@ -1,13 +1,17 @@
-import React, { useState, PureComponent } from 'react'
+import React, { useState, PureComponent, useEffect } from 'react'
 import { FaBars, FaBox, FaBoxOpen, FaFileAlt, FaFileInvoice, FaHome, FaPlusCircle, FaWallet } from 'react-icons/fa'
 import DetailTransaction from '../components/molecules/DetailTransaction'
 import AddProductBox from '../components/molecules/AddProductBox'
 import { barangNull, myProfilePic, transactionNull } from '../assets'
 import { useSelector } from 'react-redux'
+import Cookies from 'js-cookie'
 import ChartTransaction from '../components/template/ChartTransaction'
 import { BarChart, Bar, Rectangle, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line } from 'recharts';
 import CardBalance from '../components/organisms/CardBalance'
 import TransactionStore from '../components/template/TransactionStore'
+import { getProductByUserId, getUserById } from '../api/api'
+import CardProduct from '../components/organisms/CardProduct'
+import ProductsStore from '../components/template/ProductsStore'
 
 const data = [
   {
@@ -123,15 +127,34 @@ const dataPengunjung = [
 ]
 
 const Store = () => {
-  const userLogin = useSelector((state) => state.auth.user)? useSelector((state) => state.auth.user) : 'User' 
-
   const [isMenu, setIsMenu] = useState(1);
   const [isMenuMobile, setIsMenuMobile] = useState(false);
+  const [userLogin, setUserLogin] = useState({})
+  const [products, setProducts] = useState([])
+
+  useEffect(()=> {
+    getUserData()
+  }, [])
+
+  const getUserData = async() => {
+    const userID = Cookies.get('userID');
+    if (userID) {
+      const response = await getUserById(userID)
+      setUserLogin(response)
+    }
+  };
 
   const handleClickMenuMobile = (selectMenu) => {
     setIsMenu(selectMenu)
     setIsMenuMobile(false)
   }
+
+  const handleIsMenu = (data) => {
+    setIsMenu(data)
+  }
+
+
+
   return (
     <div className='w-full px-2 grid grid-cols-1 md:grid-cols-10 -my-7 gap-y-3 md:gap-5 md:-mx-2 bg-bg min-h-[92.5vh]'>
       <div className="flex absolute md:hidden pt-5 items-center gap-3">
@@ -146,9 +169,9 @@ const Store = () => {
           <ul className='py-2 text-slate-700'>
             <li onClick={()=>handleClickMenuMobile(1)} className={`flex items-center gap-x-2 px-5 py-3 hover:bg-blue-200 hover:border-blue-500 hover:border-l-[5px] ${isMenu === 1 && 'bg-blue-200 border-l-[5px] border-blue-500 text-blue-500'} cursor-pointer`}><FaHome size={23}/> <span className='text-[15px]'>Ringkasan</span></li>
             <li onClick={()=>handleClickMenuMobile(2)} className={`flex items-center gap-x-2 px-5 py-3 hover:bg-blue-200 hover:border-blue-500 hover:border-l-[5px] ${isMenu === 2 && 'bg-blue-200 border-l-[5px] border-blue-500 text-blue-500'} cursor-pointer`}><FaFileInvoice size={20}/> <span className='text-[15px]'>Transaksi</span></li>
-            <li onClick={()=>handleClickMenuMobile(3)} className={`flex items-center gap-x-2 px-5 py-3 hover:bg-blue-200 hover:border-blue-500 hover:border-l-[5px] ${isMenu === 3 && 'bg-blue-200 border-l-[5px] border-blue-500 text-blue-500'} cursor-pointer`}><FaWallet size={20}/> <span className='text-[15px]'>Saldo</span></li>
-            <li onClick={()=>handleClickMenuMobile(4)} className={`flex items-center gap-x-2 px-5 py-3 hover:bg-blue-200 hover:border-blue-500 hover:border-l-[5px] ${isMenu === 4 && 'bg-blue-200 border-l-[5px] border-blue-500 text-blue-500'} cursor-pointer`}><FaPlusCircle size={20}/> <span className='text-[15px]'>Jual Barang</span></li>
-            <li onClick={()=>handleClickMenuMobile(5)} className={`flex items-center gap-x-2 px-5 py-3 hover:bg-blue-200 hover:border-blue-500 hover:border-l-[5px] ${isMenu === 5 && 'bg-blue-200 border-l-[5px] border-blue-500 text-blue-500'} cursor-pointer`}><FaBoxOpen size={20}/> <span className='text-[15px]'>Barang</span></li>
+            {/* <li onClick={()=>handleClickMenuMobile(3)} className={`flex items-center gap-x-2 px-5 py-3 hover:bg-blue-200 hover:border-blue-500 hover:border-l-[5px] ${isMenu === 3 && 'bg-blue-200 border-l-[5px] border-blue-500 text-blue-500'} cursor-pointer`}><FaWallet size={20}/> <span className='text-[15px]'>Saldo</span></li> */}
+            <li onClick={()=>handleClickMenuMobile(3)} className={`flex items-center gap-x-2 px-5 py-3 hover:bg-blue-200 hover:border-blue-500 hover:border-l-[5px] ${isMenu === 3 && 'bg-blue-200 border-l-[5px] border-blue-500 text-blue-500'} cursor-pointer`}><FaPlusCircle size={20}/> <span className='text-[15px]'>Jual Barang</span></li>
+            <li onClick={()=>handleClickMenuMobile(4)} className={`flex items-center gap-x-2 px-5 py-3 hover:bg-blue-200 hover:border-blue-500 hover:border-l-[5px] ${isMenu === 4 && 'bg-blue-200 border-l-[5px] border-blue-500 text-blue-500'} cursor-pointer`}><FaBoxOpen size={20}/> <span className='text-[15px]'>Barang</span></li>
           </ul>
         </div>
       </div>
@@ -157,15 +180,15 @@ const Store = () => {
       <div className="hidden md:block fixed top-[75px] left-0 bottom-0 md:w-[28%] lg:w-[18.5%] bg-white">
         <div className="header flex items-center gap-x-3 font-medium border-b p-3">
           <div className="profil-pic w-10 h-10 rounded-full border shadow-sm overflow-hidden"><img src={myProfilePic} className='w-full h-full object-cover' /></div>
-          <h4 className='text-lg'>{userLogin.username? userLogin.username:'User'}</h4>
+          <h4 className='text-lg'>{userLogin.username? userLogin.username : ''}</h4>
         </div>
         <div className="menu font-medium">
           <ul className='py-5 mt-3 text-slate-700'>
             <li onClick={()=>setIsMenu(1)} className={`flex items-center gap-x-2 px-5 py-3 ${isMenu === 1 && 'bg-blue-200 border-l-[5px] border-blue-500 text-blue-500'} hover:bg-blue-200 hover:border-blue-500 hover:border-l-[5px] cursor-pointer`}><FaHome size={23}/> <span className='text-[15px]'>Dashboard</span></li>
             <li onClick={()=>setIsMenu(2)} className={`flex items-center gap-x-2 px-5 py-3 ${isMenu === 2 && 'bg-blue-200 border-l-[5px] border-blue-500 text-blue-500'} hover:bg-blue-200 hover:border-blue-500 hover:border-l-[5px] cursor-pointer`}><FaFileInvoice size={20}/> <span className='text-[15px]'>Transaksi</span></li>
-            <li onClick={()=>setIsMenu(3)} className={`flex items-center gap-x-2 px-5 py-3 ${isMenu === 3 && 'bg-blue-200 border-l-[5px] border-blue-500 text-blue-500'} hover:bg-blue-200 hover:border-blue-500 hover:border-l-[5px] cursor-pointer`}><FaWallet size={20}/> <span className='text-[15px]'>Saldo</span></li>
-            <li onClick={()=>setIsMenu(4)} className={`flex items-center gap-x-2 px-5 py-3 ${isMenu === 4 && 'bg-blue-200 border-l-[5px] border-blue-500 text-blue-500'} hover:bg-blue-200 hover:border-blue-500 hover:border-l-[5px] cursor-pointer`}><FaPlusCircle size={20}/> <span className='text-[15px]'>Jual Barang</span></li>
-            <li onClick={()=>setIsMenu(5)} className={`flex items-center gap-x-2 px-5 py-3 ${isMenu === 5 && 'bg-blue-200 border-l-[5px] border-blue-500 text-blue-500'} hover:bg-blue-200 hover:border-blue-500 hover:border-l-[5px] cursor-pointer`}><FaBoxOpen size={20}/> <span className='text-[15px]'>Barang</span></li>
+            {/* <li onClick={()=>setIsMenu(3)} className={`flex items-center gap-x-2 px-5 py-3 ${isMenu === 3 && 'bg-blue-200 border-l-[5px] border-blue-500 text-blue-500'} hover:bg-blue-200 hover:border-blue-500 hover:border-l-[5px] cursor-pointer`}><FaWallet size={20}/> <span className='text-[15px]'>Saldo</span></li> */}
+            <li onClick={()=>setIsMenu(3)} className={`flex items-center gap-x-2 px-5 py-3 ${isMenu === 3 && 'bg-blue-200 border-l-[5px] border-blue-500 text-blue-500'} hover:bg-blue-200 hover:border-blue-500 hover:border-l-[5px] cursor-pointer`}><FaPlusCircle size={20}/> <span className='text-[15px]'>Jual Barang</span></li>
+            <li onClick={()=>setIsMenu(4)} className={`flex items-center gap-x-2 px-5 py-3 ${isMenu === 4 && 'bg-blue-200 border-l-[5px] border-blue-500 text-blue-500'} hover:bg-blue-200 hover:border-blue-500 hover:border-l-[5px] cursor-pointer`}><FaBoxOpen size={20}/> <span className='text-[15px]'>Barang</span></li>
           </ul>
         </div>
       </div>
@@ -174,7 +197,7 @@ const Store = () => {
         {isMenu === 1 &&
           <div className="detail-transaksi grid lg:grid-cols-2 gap-5 mb-5">
             <DetailTransaction title={'Ringkasan Transaksi'} col1={'Pesanan Baru'} col2={'Di Proses'} col3={'Retur'}/>
-            <DetailTransaction title={'Daftar Barang'} col1={'Barang Dijual'} col2={'Tidak Dijual'} col3={'Barang Draft'}/>
+            <CardBalance title={'Total Saldo'}/>
 
             <ChartTransaction title={'Statistik Penjualan Bulanan'}>
               <ResponsiveContainer width="100%" height="100%">
@@ -184,7 +207,7 @@ const Store = () => {
                   <YAxis />
                   <Tooltip />
                   <Legend />
-                  <Bar dataKey="penjualan" fill="#108EE9" />
+                  <Bar dataKey="penjualan" fill="#B5E1D0" />
                 </BarChart>
               </ResponsiveContainer>
             </ChartTransaction>
@@ -228,26 +251,32 @@ const Store = () => {
           </div>
         }
         {isMenu === 3 &&
-          <div className="detail-transaksi grid lg:grid-cols-2 gap-5 mb-5">
-            <CardBalance title={'Pendapatan Hari Ini'}/>
-            <CardBalance title={'Total Saldo'}/>
-          </div>
+            <AddProductBox onIsMenu={handleIsMenu}/>
         }
         {isMenu === 4 &&
-            <AddProductBox />
-        }
-        {isMenu === 5 &&
-          <div className="product-list gap-x-5 mb-5">
-            <div className='border shadow-sm rounded-lg bg-white'>
-              <div className="header p-3 border-b font-medium"><h5>Daftar Barang</h5></div>
-              <div className="main flex justify-center items-center pb-5">
-                <div className='text-center'>
-                  <img src={barangNull} alt="" />
-                  <p className=''>Belum ada barang yang di jual</p>
-                </div>
-              </div>
-            </div>
-          </div>
+            <ProductsStore />
+          // <div className="product-list gap-x-5 mb-5">
+          //   <div className='border shadow-sm rounded-lg bg-white'>
+          //     <div className="header p-3 border-b font-medium"><h5>Daftar Barang</h5></div>
+          //     <div className="main flex justify-center items-center pb-5">
+          //       {products.length == 0?
+          //         <div className='text-center'>
+          //           <img src={barangNull} alt="" />
+          //           <p className=''>Belum ada barang yang di jual</p>
+          //         </div>
+          //         :
+          //         <>
+          //           <div className="header grid grid-cols-6 px-3 py-2"></div>
+          //           {products.map((item, index) => (
+          //             <div key={index} className='border shadow-sm px-4 py-2 grid grid-cols-5 ga-3 mb-3'>
+          //               <h6></h6>
+          //             </div>
+          //           ))}
+          //         </>
+          //       }
+          //     </div>
+          //   </div>
+          // </div>
         }
       </main>
     </div>

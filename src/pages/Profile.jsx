@@ -6,18 +6,32 @@ import { boxOpenVector, myProfilePic, starVector, trukVector, vectorStore, walle
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setAuth } from '../reducers/authReducers';
+import Cookies from 'js-cookie'
+import { getUserById } from '../api/api';
+
 
 const Profile = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-  const userLogin = useSelector((state) => state.auth.user)? useSelector((state) => state.auth.user) : 'User' 
   const getListProduct = useSelector((state) => state.cart.listProductAfterChcekout)
 
-  // const [userLogin, setUserLogin] = useState(getUserLogin? getUserLogin : 'User')
+  const [userLogin, setUserLogin] = useState({})
   const [isMenuProfile, setIsMenuProfile] = useState(location.state? 3 : 1);
   const [isMenuProfileMobile, setIsMenuProfileMobile] = useState(false);
   const [isMenuOrder, setIsMenuOrder] = useState(2)
+
+  useEffect(()=> {
+    getUserData()
+  }, [])
+
+  const getUserData = async() => {
+    const userID = Cookies.get('userID');
+    if (userID) {
+      const response = await getUserById(userID)
+      setUserLogin(response)
+    }
+  };
 
   const handleClickMenuProfileMobile = (selectMenu) => {
     setIsMenuProfile(selectMenu)
@@ -26,6 +40,7 @@ const Profile = () => {
 
   const handleLogout = () => {
     navigate('/')
+    Cookies.remove('userID');
     dispatch(setAuth(false))
   }
 
@@ -57,7 +72,7 @@ const Profile = () => {
         <div className="hidden md:block fixed top-[75px] left-0 bottom-0 md:w-[28%] lg:w-[18.5%] bg-white">
           <div className="header flex items-center gap-x-3 font-medium border-b p-3">
             <div className="profil-pic w-8 h-8 rounded-full border shadow-sm overflow-hidden"><img src={myProfilePic} className='w-full h-full object-cover' /></div>
-            <h4 className='text-md'>{userLogin.username}</h4>
+            <h4 className='text-md'>{userLogin.username?userLogin.username:''}</h4>
           </div>
           <div className="menu">
             <ul className='py-5 mt-3 font-medium text-slate-600'>
@@ -82,9 +97,9 @@ const Profile = () => {
               </div>
               <div className='col-span-7'>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5 font-medium">
-                  <InputBox title={'Nama Depan'} placeholder={userLogin.username}/>
+                  <InputBox title={'Nama Depan'} placeholder={userLogin.username?userLogin.username:''}/>
                   <InputBox title={'Nama Belakang'} placeholder={'Masukan nama belakang anda'}/>
-                  <div className="email md:col-span-2"><InputBox title={'Email'} placeholder={userLogin.email}/></div>
+                  <div className="email md:col-span-2"><InputBox title={'Email'} placeholder={userLogin.email?userLogin.email:''}/></div>
                   <InputBox title={'Telepon'} placeholder={'Masukan nomor telepon'}/>
                   <div className="birthday-date">
                     <div className="header mb-1 flex items-center gap-x-1">

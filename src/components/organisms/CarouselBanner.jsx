@@ -28,6 +28,7 @@ const CarouselBanner = () => {
 
   var settings = {
     dots: true,
+    // centerMode: true,
     infinite: true,
     speed: 500,
     slidesToShow: 1,

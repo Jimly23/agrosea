@@ -13,8 +13,8 @@ export const getUsers = async() => {
 
 export const getUserById = async(id) => {
   try {
-    const response = await axios.get('https://668fb31ec0a7969efd992601.mockapi.io/api/v1/users')
-    return response
+    const response = await axios.get(`https://668fb31ec0a7969efd992601.mockapi.io/api/v1/users/${id}`)
+    return response.data
   } catch (error) {
     return error
   }
@@ -41,7 +41,28 @@ export const login = async(data) => {
   }
 }
 
-// Get Products
+// Products
+export const addProduct = async(data) => {
+  try {
+    const response = await axios.post('https://668fb31ec0a7969efd992601.mockapi.io/api/v1/products/',data)
+    return response.data
+  } catch (error) {
+    return error
+  }
+}
+
+export const getProductByUserId = async(userId) => {
+  try {
+    const getProducts = await axios.get('https://668fb31ec0a7969efd992601.mockapi.io/api/v1/products')
+    const response = getProducts.data.filter(p => p.userId == userId)
+    return response
+  } catch (error) {
+    return error
+  }
+}
+
+
+// Get Products Object
 export const getProducts = () => {
   const response = products
   return response

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { FaBook, FaCartPlus, FaHome, FaSearch, FaStoreAlt, FaUserAlt } from 'react-icons/fa'
-import { FaBars } from 'react-icons/fa6'
+import { FaBook, FaBookOpen, FaCartPlus, FaHome, FaSearch, FaStoreAlt, FaUserAlt } from 'react-icons/fa'
+import { FaBars, FaCartShopping } from 'react-icons/fa6'
 import { Link, useNavigate } from 'react-router-dom'
 import { logoText, searchProduct } from '../../assets'
 import { getProducts, getProductsById, getProductsByName } from '../../api/api'
+import Tooltip from '../molecules/Tooltip'
 
 const Navbar = () => {
   const navigate = useNavigate()
@@ -56,35 +57,43 @@ const Navbar = () => {
             <img src={logoText} className='w-[150px]' />
           </Link>
         </div>
-        <div onClick={()=>setIsShowSearch(true)} className="box-search flex items-center justify-around bg-white rounded-full p-2 px-5">
+        <div onClick={()=>setIsShowSearch(true)} className="box-search flex items-center justify-around bg-white rounded-md p-2 px-5">
           <input onChange={handleChange} type="text" className='bg-transparent w-[90%] sm:w-[300px] border-none outline-none font-medium' placeholder={placeholder}/>
           <FaSearch className='text-slate-600'/>
         </div>
         <div className="menu hidden sm:flex items-center justify-end gap-5">
           <Link to={'/cart'}>
-            <div className="relative cart p-2 border rounded text-white">
-              <FaCartPlus size={18}/>
-              {totalProduct !== 0 && 
-                <div className="absolute top-[-9px] right-[-9px] w-[18px] h-[18px] rounded-full bg-red-500 text-white text-[11px] font-medium flex items-center justify-center">
-                  {totalProduct}
-                </div>
-              }
-            </div>
+            <Tooltip text={'Keranjang'}>
+              <div className="relative cart p-2 border rounded text-white">
+                <FaCartShopping size={18}/>
+                {totalProduct !== 0 && 
+                  <div className="absolute top-[-9px] right-[-9px] w-[18px] h-[18px] rounded-full bg-red-500 text-white text-[11px] font-medium flex items-center justify-center">
+                    {totalProduct}
+                  </div>
+                }
+              </div>
+            </Tooltip>
           </Link>
           <Link to={'/store'}>
-            <div className="store p-2 border rounded text-white">
-              <FaStoreAlt size={18}/>
-            </div>
+            <Tooltip text={'Toko'}>
+              <div className="store p-2 border rounded text-white">
+                <FaStoreAlt size={18}/>
+              </div>
+            </Tooltip>
           </Link>
           <a href="/education" target="_blank" rel="noopener noreferrer">
-            <div className="store p-2 border rounded text-white">
-              <FaBook size={18}/>
-            </div>
+            <Tooltip text={"Agrosea Akademi"}>
+              <div className="academy p-2 border rounded text-white">
+                <FaBookOpen size={18}/>
+              </div>
+            </Tooltip>
           </a>
           <Link to={'/profile'}>
-            <div className="profile p-2 border rounded text-white">
-              <FaUserAlt size={18}/>
-            </div>
+            <Tooltip text="Profile">
+              <div className="profile p-2 border rounded text-white">
+                <FaUserAlt size={18}/>
+              </div>
+            </Tooltip>
           </Link>
         </div>
         <div onClick={()=> setIsMenu(prev => !prev)} className="menu-bar sm:hidden p-2 border rounded text-white relative">

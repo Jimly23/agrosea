@@ -2,7 +2,7 @@ import React from 'react'
 
 const TransactionItem = ({status}) => {
   return (
-    <div className="column-name grid grid-cols-7 text-[14px] p-5 hover:bg-slate-200">
+    <div className="column-name grid grid-cols-7 text-[14px] p-5 hover:bg-slate-100">
       <h6>T240516TGZ</h6>
       <h6>5 Diamond Free Fire</h6>
       <h6>726282009</h6>

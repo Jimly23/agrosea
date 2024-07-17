@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { loginLogo, logoTextFooter } from '../../assets'
 import { Link, useNavigate } from 'react-router-dom'
 import { FaCheck } from 'react-icons/fa';
 import axios from 'axios';
+import Cookies from 'js-cookie'
 import { login, register } from '../../api/api';
 import Swal from 'sweetalert2'
 import { useDispatch } from 'react-redux';
@@ -66,7 +67,8 @@ const Auth = ({children, title, txtButton, link, redirectPage, dataUser}) => {
       const response = await login(data)
       if(typeof(response) == 'object'){
         dispatch(setAuth(true))
-        dispatch(setUser(response))
+        Cookies.set('userID', response.id, { expires: 7 });
+        // dispatch(setUser(response))
         navigate('/home')
       } else {
         handleError(response)

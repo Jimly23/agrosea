@@ -33,7 +33,7 @@ const CardProduct = ({productInformation}) => {
         <div className="view text-[12px] sm:text-[13px] font-medium flex items-center text-slate-500">
           <div className="rating flex items-center">
             <FaStar className='text-orange-300 me-1'/>
-            <p>{productInformation.rating}</p>
+            <p>{productInformation.rating?productInformation.rating:0}</p>
           </div>
           <div className='w-[1px] h-3 bg-slate-500 mx-2'></div>
           <div className="soldout border-slate-500">
