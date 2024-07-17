@@ -54,25 +54,4 @@ const App = () => {
   )
 }
 
-// function App() {
-
-//   return (
-//     <>
-//       <Router>
-//         <Navbar />
-//         <div className="pt-[100px]">
-//           <Routes>
-//             <Route path="/home" element={<Home />}/>
-//             <Route path="/profile" element={<Profile />}/>
-//             <Route path="/store" element={<Store />}/>
-//             <Route path="/cart" element={<Cart />}/>
-//             <Route path="/checkout" element={<Checkout />}/>
-//             <Route path="/detail-product" element={<DetailProduct />}/>
-//           </Routes>
-//         </div>
-//       </Router>
-//     </>
-//   )
-// }
-
 export default App
