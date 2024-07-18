@@ -18,8 +18,6 @@ const AddProductBox = ({onIsMenu, updateProduct}) => {
   const [category, setCategory] = useState({category: '', specCategory: ''})
   const [isLoading, setIsLoading] = useState(false)
 
-  console.log(updateProduct);
-
   const handleInclude = (name, value) => {
     setNewProduct(prevCheckUser => ({
       ...prevCheckUser, [name]:value

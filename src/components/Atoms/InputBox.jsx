@@ -13,7 +13,7 @@ const InputBox = ({name, title, optional, type, placeholder, style, include, upd
   return (
     <div className={`${style? style:'text-[13px]'}  text-slate-700`}>
       <div className="header mb-1 flex items-center gap-x-1">
-        <h6 className={``}>{title}</h6>
+        <h6 className={`text-[14px]`}>{title}</h6>
         <h6 className='text-[12px] text-slate-500'>{optional}</h6>
       </div>
       <div className='flex items-center border rounded-md p-1 pe-5'>

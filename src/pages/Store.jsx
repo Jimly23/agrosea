@@ -167,7 +167,6 @@ const Store = () => {
           <ul className='py-2 text-slate-700'>
             <li onClick={()=>handleClickMenuMobile(1)} className={`flex items-center gap-x-2 px-5 py-3 hover:bg-blue-200 hover:border-blue-500 hover:border-l-[5px] ${isMenu === 1 && 'bg-blue-200 border-l-[5px] border-blue-500 text-blue-500'} cursor-pointer`}><FaHome size={23}/> <span className='text-[15px]'>Ringkasan</span></li>
             <li onClick={()=>handleClickMenuMobile(2)} className={`flex items-center gap-x-2 px-5 py-3 hover:bg-blue-200 hover:border-blue-500 hover:border-l-[5px] ${isMenu === 2 && 'bg-blue-200 border-l-[5px] border-blue-500 text-blue-500'} cursor-pointer`}><FaFileInvoice size={20}/> <span className='text-[15px]'>Transaksi</span></li>
-            {/* <li onClick={()=>handleClickMenuMobile(3)} className={`flex items-center gap-x-2 px-5 py-3 hover:bg-blue-200 hover:border-blue-500 hover:border-l-[5px] ${isMenu === 3 && 'bg-blue-200 border-l-[5px] border-blue-500 text-blue-500'} cursor-pointer`}><FaWallet size={20}/> <span className='text-[15px]'>Saldo</span></li> */}
             <li onClick={()=>handleClickMenuMobile(3)} className={`flex items-center gap-x-2 px-5 py-3 hover:bg-blue-200 hover:border-blue-500 hover:border-l-[5px] ${isMenu === 3 && 'bg-blue-200 border-l-[5px] border-blue-500 text-blue-500'} cursor-pointer`}><FaPlusCircle size={20}/> <span className='text-[15px]'>Jual Barang</span></li>
             <li onClick={()=>handleClickMenuMobile(4)} className={`flex items-center gap-x-2 px-5 py-3 hover:bg-blue-200 hover:border-blue-500 hover:border-l-[5px] ${isMenu === 4 && 'bg-blue-200 border-l-[5px] border-blue-500 text-blue-500'} cursor-pointer`}><FaBoxOpen size={20}/> <span className='text-[15px]'>Barang</span></li>
           </ul>
@@ -178,13 +177,12 @@ const Store = () => {
       <div className="hidden md:block fixed top-[75px] left-0 bottom-0 md:w-[28%] lg:w-[18.5%] bg-white">
         <div className="header flex items-center gap-x-3 font-medium border-b p-3">
           <div className="profil-pic w-10 h-10 rounded-full border shadow-sm overflow-hidden"><img src={myProfilePic} className='w-full h-full object-cover' /></div>
-          <h4 className='text-lg'>{userLogin.username? userLogin.username : ''}</h4>
+          <h4 className='text-lg'>{userLogin.storeName? userLogin.storeName : ''}</h4>
         </div>
         <div className="menu font-medium">
           <ul className='py-5 mt-3 text-slate-700'>
             <li onClick={()=>setIsMenu(1)} className={`flex items-center gap-x-2 px-5 py-3 ${isMenu === 1 && 'bg-blue-200 border-l-[5px] border-blue-500 text-blue-500'} hover:bg-blue-200 hover:border-blue-500 hover:border-l-[5px] cursor-pointer`}><FaHome size={23}/> <span className='text-[15px]'>Dashboard</span></li>
             <li onClick={()=>setIsMenu(2)} className={`flex items-center gap-x-2 px-5 py-3 ${isMenu === 2 && 'bg-blue-200 border-l-[5px] border-blue-500 text-blue-500'} hover:bg-blue-200 hover:border-blue-500 hover:border-l-[5px] cursor-pointer`}><FaFileInvoice size={20}/> <span className='text-[15px]'>Transaksi</span></li>
-            {/* <li onClick={()=>setIsMenu(3)} className={`flex items-center gap-x-2 px-5 py-3 ${isMenu === 3 && 'bg-blue-200 border-l-[5px] border-blue-500 text-blue-500'} hover:bg-blue-200 hover:border-blue-500 hover:border-l-[5px] cursor-pointer`}><FaWallet size={20}/> <span className='text-[15px]'>Saldo</span></li> */}
             <li onClick={()=>setIsMenu(3)} className={`flex items-center gap-x-2 px-5 py-3 ${isMenu === 3 && 'bg-blue-200 border-l-[5px] border-blue-500 text-blue-500'} hover:bg-blue-200 hover:border-blue-500 hover:border-l-[5px] cursor-pointer`}><FaPlusCircle size={20}/> <span className='text-[15px]'>Jual Barang</span></li>
             <li onClick={()=>setIsMenu(4)} className={`flex items-center gap-x-2 px-5 py-3 ${isMenu === 4 && 'bg-blue-200 border-l-[5px] border-blue-500 text-blue-500'} hover:bg-blue-200 hover:border-blue-500 hover:border-l-[5px] cursor-pointer`}><FaBoxOpen size={20}/> <span className='text-[15px]'>Barang</span></li>
           </ul>
@@ -253,28 +251,6 @@ const Store = () => {
         }
         {isMenu === 4 &&
             <ProductsStore />
-          // <div className="product-list gap-x-5 mb-5">
-          //   <div className='border shadow-sm rounded-lg bg-white'>
-          //     <div className="header p-3 border-b font-medium"><h5>Daftar Barang</h5></div>
-          //     <div className="main flex justify-center items-center pb-5">
-          //       {products.length == 0?
-          //         <div className='text-center'>
-          //           <img src={barangNull} alt="" />
-          //           <p className=''>Belum ada barang yang di jual</p>
-          //         </div>
-          //         :
-          //         <>
-          //           <div className="header grid grid-cols-6 px-3 py-2"></div>
-          //           {products.map((item, index) => (
-          //             <div key={index} className='border shadow-sm px-4 py-2 grid grid-cols-5 ga-3 mb-3'>
-          //               <h6></h6>
-          //             </div>
-          //           ))}
-          //         </>
-          //       }
-          //     </div>
-          //   </div>
-          // </div>
         }
       </main>
     </div>

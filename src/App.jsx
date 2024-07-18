@@ -16,11 +16,12 @@ import NotFound from "./pages/NotFound";
 import { useEffect, useState } from "react";
 import Education from "./pages/Education";
 import DetailEducation from "./pages/DetailEducation";
+import RegisterStore from "./pages/RegisterStore";
 
 const Layout = () => {
   const location = useLocation();
   const pathsWithoutNavbar = ['/', '/register', '/education'];
-  const shouldShowNavbar = !pathsWithoutNavbar.includes(location.pathname) && ['/home','/profile','/store','/cart','/checkout','/detail-product'].includes(location.pathname);
+  const shouldShowNavbar = !pathsWithoutNavbar.includes(location.pathname) && ['/home','/profile','/store','/cart','/checkout','/detail-product','/register/seller'].includes(location.pathname);
 
   return (
     <div className="font-Poppins">
@@ -35,9 +36,10 @@ const Layout = () => {
             <Route path="/store" element={<Store />}/>
             <Route path="/cart" element={<Cart />}/>
             <Route path="/checkout" element={<Checkout />}/>
-            <Route path="/detail-product" element={<DetailProduct />}/>
             <Route path="/education" element={<Education />}/>
+            <Route path="/detail-product" element={<DetailProduct />}/>
             <Route path="/detail-materi" element={<DetailEducation />}/>
+            <Route path="/register/seller" element={<RegisterStore />}/>
           </Route>
           <Route path="*" element={<NotFound />}/>
         </Routes>

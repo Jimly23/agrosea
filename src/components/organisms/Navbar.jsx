@@ -4,8 +4,9 @@ import { FaBookOpen, FaCartPlus, FaHome, FaSearch, FaStoreAlt, FaUserAlt } from 
 import { FaBars, FaCartShopping } from 'react-icons/fa6'
 import { Link, useNavigate } from 'react-router-dom'
 import { logoText, searchProduct } from '../../assets'
-import { getProducts, getProductsById } from '../../api/api'
+import { getProducts, getProductsById, getUserById } from '../../api/api'
 import Tooltip from '../molecules/Tooltip'
+import Cookies from 'js-cookie'
 
 const Navbar = () => {
   const navigate = useNavigate()
@@ -48,6 +49,18 @@ const Navbar = () => {
     setIsShowSearch(false)
   }
 
+  const handleClickMenuStore = async () => {
+    const userID = Cookies.get('userID');
+    const response = await getUserById(userID)
+    
+    if(response.seller === true){
+      navigate('/store')
+    } else {
+      navigate('/register/seller', {state: userID})
+    }
+
+  }
+
   return (
     <div className='w-[100%] bg-aksen fixed top-0 z-20'>
       <div className="max-w-[1280px] flex justify-between items-center mx-auto py-4 px-5 gap-5">
@@ -73,13 +86,13 @@ const Navbar = () => {
               </div>
             </Tooltip>
           </Link>
-          <Link to={'/store'}>
+          {/* <Link to={'/store'}> */}
             <Tooltip text={'Toko'}>
-              <div className="store p-2 border rounded text-white">
+              <div onClick={handleClickMenuStore} className="store p-2 border rounded text-white cursor-pointer">
                 <FaStoreAlt size={18}/>
               </div>
             </Tooltip>
-          </Link>
+          {/* </Link> */}
           <a href="/education" target="_blank" rel="noopener noreferrer">
             <Tooltip text={"Agrosea Akademi"}>
               <div className="academy p-2 border rounded text-white">

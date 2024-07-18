@@ -41,6 +41,17 @@ export const login = async(data) => {
   }
 }
 
+export const updateUser = async(data) => {
+  const {id, seller, storeName} = data;
+  try {
+    // console.log(id,seller,storeName);
+    const response = await axios.put(`https://668fb31ec0a7969efd992601.mockapi.io/api/v1/users/${id}`, { seller, storeName });
+    return response.data
+  } catch (error) {
+    return error
+  }
+}
+
 // Products
 export const addProduct = async(data) => {
   try {

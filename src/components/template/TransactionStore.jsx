@@ -23,7 +23,7 @@ const TransactionStore = () => {
       </div>
 
       <main>
-        <div className="column-name grid grid-cols-7 font-medium p-5 bg-slate-200">
+        <div className="column-name grid grid-cols-7 font-medium p-5 bg-slate-200 gap-2">
           <h6>Trx ID</h6>
           <h6>Produk</h6>
           <h6>Tujuan</h6>
@@ -34,12 +34,12 @@ const TransactionStore = () => {
         </div>
 
         <div className="transaction-list">
-          <TransactionItem status={'Sukses'} />
-          <TransactionItem status={'Sukses'} />
-          <TransactionItem status={'Sukses'} />
-          <TransactionItem status={'Pending'} />
-          <TransactionItem status={'Sukses'} />
-          <TransactionItem status={'Sukses'} />
+          <TransactionItem idTrx={'TRX0023532'} productName={'Cumi-cumi'} price={63000} status={'Sukses'} />
+          <TransactionItem idTrx={'TRX0023533'} productName={'Jaring ikan'} price={119000} status={'Sukses'} />
+          <TransactionItem idTrx={'TRX0023534'} productName={'Ikan Bandeng'} price={26500} status={'Sukses'} />
+          <TransactionItem idTrx={'TRX0023535'} productName={'Lobster'} price={122000} status={'Pending'} />
+          <TransactionItem idTrx={'TRX0023536'} productName={'Tuna'} price={43000} status={'Sukses'} />
+          <TransactionItem idTrx={'TRX0023537'} productName={'Kepiting'} price={195000} status={'Sukses'} />
         </div>
       </main>
     </div>
