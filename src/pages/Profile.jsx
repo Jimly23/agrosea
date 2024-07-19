@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import axios from 'axios'
 import { FaBars, FaBox, FaBoxOpen, FaCreditCard, FaFileInvoice, FaHome, FaLaptop, FaLock, FaMap, FaPlusCircle, FaRegIdCard, FaStar, FaStoreAlt, FaTruck, FaUser, FaWallet } from 'react-icons/fa';
 import { FaComputer, FaMapLocation, FaMapLocationDot, FaRightFromBracket, FaStore } from 'react-icons/fa6';
 import InputBox from '../components/Atoms/InputBox';
@@ -14,24 +15,63 @@ const Profile = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
+  const userID = Cookies.get('userID');
   const getListProduct = useSelector((state) => state.cart.listProductAfterChcekout)
 
   const [userLogin, setUserLogin] = useState({})
   const [isMenuProfile, setIsMenuProfile] = useState(location.state? 3 : 1);
   const [isMenuProfileMobile, setIsMenuProfileMobile] = useState(false);
+  const [onAddAddress, setOnAddAddress] = useState(false);
+  const [addresses, setAddresses] = useState([])
+  const [newAddress, setNewAddress] = useState({
+    username:'',
+    noHp:'',
+    province:'',
+    city:'',
+    subdistrict:'',
+    fullAddress:''
+  })
   const [isMenuOrder, setIsMenuOrder] = useState(2)
 
   useEffect(()=> {
     getUserData()
-  }, [])
+  }, [userLogin])
 
   const getUserData = async() => {
-    const userID = Cookies.get('userID');
     if (userID) {
       const response = await getUserById(userID)
       setUserLogin(response)
     }
   };
+
+  useEffect(() => {
+    const fetchAddresses = async () => {
+      try {
+        const response = await getUserById(userID);
+        setAddresses(response.address);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchAddresses();
+  }, [addresses]);
+
+  const handleChange = (e) => {
+    setNewAddress({...newAddress, [e.target.name]: e.target.value})
+  }
+
+  const handleAddAddress = async(e) => {
+    e.preventDefault()
+    try {
+      const updatedAddresses = [...addresses, newAddress];
+      await axios.put(`https://668fb31ec0a7969efd992601.mockapi.io/api/v1/users/${userID}`, {
+        address: updatedAddresses
+      });
+      setOnAddAddress(false)
+    } catch (error) {
+      console.error(error);
+    }
+  } 
 
   const handleClickMenuProfileMobile = (selectMenu) => {
     setIsMenuProfile(selectMenu)
@@ -118,16 +158,49 @@ const Profile = () => {
           {isMenuProfile === 2 && 
             <>
               <div className="border shadow-sm rounded-lg p-5 bg-white">
-                <button className='px-3 py-1 rounded-md bg-aksen text-white font-medium text-[14px] mb-3'>Tambah Alamat</button>
-                <div className="address-box">
-                  <div className="item border border-blue-500 bg-blue-50 rounded-md p-3">
-                    <h5 className='font-medium'>Rumah</h5>
-                    <h3 className='font-medium text-[18px]'>Jimly Assidqi</h3>
-                    <p className='text-[15px]'>082329322353</p>
-                    <p className='text-[14px] mb-5'>Purwanegara, kec. Purwokerto Utara, Kab. Banyumas, Jawa Tengah</p>
-                    <button className='text-aksen text-[14px]'>Ubah Alamat</button>
+                <button onClick={()=>setOnAddAddress(true)} className='px-3 py-1 rounded-md bg-aksen text-white font-medium text-[14px] mb-3'>Tambah Alamat</button>
+                {onAddAddress?
+                  <form onSubmit={handleAddAddress} className=' bg-slate-50 p-8 pt-10 rounded-lg border shadow-sm w-full max-w-[700px] grid grid-cols-2 gap-x-5 gap-y-1'>
+                    <div className='w-full'>
+                      <p className='text-[14px]'>Nama penerima</p>
+                      <input onChange={handleChange} type="text" name='username' className='outline-none border px-4 py-2 rounded-lg mb-3 w-full' placeholder='Masukan nama penerima' />
+                    </div>
+                    <div className='w-full'>
+                      <p className='text-[14px]'>Nomor HP</p>
+                      <input onChange={handleChange} type="text" name='noHp' className='outline-none border px-4 py-2 rounded-lg mb-3 w-full' placeholder='Nomor HP' />
+                    </div>
+                    <div className='w-full col-span-2'>
+                      <p className='text-[14px]'>Provinsi</p>
+                      <input onChange={handleChange} type="text" name='province' className='outline-none border px-4 py-2 rounded-lg mb-3 w-full' placeholder='Masukan Provinsi Anda' />
+                    </div>
+                    <div className='w-full'>
+                      <p className='text-[14px]'>Kabupaten / Kota</p>
+                      <input onChange={handleChange} type="text" name='city' className='outline-none border px-4 py-2 rounded-lg mb-3 w-full' placeholder='Masukan Kabupaten atau Kota' />
+                    </div>
+                    <div className='w-full'>
+                      <p className='text-[14px]'>Kecamatan</p>
+                      <input onChange={handleChange} type="text" name='subdistrict' className='outline-none border px-4 py-2 rounded-lg mb-3 w-full' placeholder='Masukan Kecamatan Anda' />
+                    </div>
+                    <div className='w-full col-span-2 mb-5'>
+                      <p className='text-[14px]'>Alamat Lengkap</p>
+                      <input onChange={handleChange} type="text" name='fullAddress' className='outline-none border px-4 py-2 rounded-lg mb-3 w-full' placeholder='Alamat Lengkap' />
+                    </div>
+                    <div onClick={()=>setOnAddAddress(false)} className='cursor-pointer text-center py-2 rounded-lg bg-slate-200 text-slate-600 font-medium'>Batal</div>
+                    <button type='submit' className='py-2 rounded-lg bg-aksen text-white font-medium'>Simpan</button>
+                  </form>
+                :
+                  <div className="address-box">
+                    {addresses.map((item, index) => (
+                      <div key={index} className="item border border-blue-500 bg-blue-50 rounded-md p-3 mb-3">
+                        <h5 className='font-medium'>Rumah</h5>
+                        <h3 className='font-medium text-[18px]'>{item.username}</h3>
+                        <p className='text-[15px]'>{item.noHp}</p>
+                        <p className='text-[14px] mb-5'>{item.fullAddress}, {item.subdistrict}, {item.city}, {item.province}</p>
+                        {/* <button className='text-aksen text-[14px]'>Ubah Alamat</button> */}
+                      </div>
+                    ))}
                   </div>
-                </div>
+                }
               </div>
             </>
           }

@@ -32,10 +32,10 @@ const ProductsStore = () => {
         <button className='border rounded-md shadow-sm outline-none px-4 py-2 w-full bg-aksen text-white'>Cari</button>
       </div>
 
-      <main>
+      <main className='md:col-start-4 lg:col-start-3 col-span-7 lg:col-span-8 w-full py-5 mt-14 md:mt-0'>
         {products.length == 0?
           <div className='text-center flex justify-center flex-col items-center py-5 border-t'>
-            <img src={barangNull} alt="" />
+            <img src={barangNull} />
             <p className=''>Belum ada barang yang di jual</p>
           </div>
           :
@@ -48,7 +48,7 @@ const ProductsStore = () => {
                   </div>
                   <h6 className='font-medium text-md'>Detail Produk</h6>
                 </div>
-                <AddProductBox updateProduct={detailProduct}/>
+                  <AddProductBox updateProduct={detailProduct}/>
               </div>
               :
               <>

@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react'
-import { FaBars, FaBoxOpen,  FaFileInvoice, FaHome, FaPlusCircle } from 'react-icons/fa'
+import { FaBars, FaBoxOpen,  FaChevronLeft,  FaFileInvoice, FaHome, FaPlusCircle } from 'react-icons/fa'
 import DetailTransaction from '../components/molecules/DetailTransaction'
 import AddProductBox from '../components/molecules/AddProductBox'
-import { myProfilePic } from '../assets'
+import { barangNull, myProfilePic } from '../assets'
 import Cookies from 'js-cookie'
 import ChartTransaction from '../components/template/ChartTransaction'
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line } from 'recharts';
 import CardBalance from '../components/organisms/CardBalance'
 import TransactionStore from '../components/template/TransactionStore'
-import { getUserById } from '../api/api'
+import { getProductByUserId, getUserById } from '../api/api'
 import ProductsStore from '../components/template/ProductsStore'
 
 const data = [
@@ -129,6 +129,17 @@ const Store = () => {
   const [isMenuMobile, setIsMenuMobile] = useState(false);
   const [userLogin, setUserLogin] = useState({})
   const [products, setProducts] = useState([])
+  const [detailProduct, setDetailProduct] = useState(null)
+
+  useEffect(()=>{
+    getProducts()
+  },[])
+
+  const getProducts = async () => {
+    const userID = Cookies.get('userID');
+    const response = await getProductByUserId(String(userID))
+    setProducts([...response])
+  }
 
   useEffect(()=> {
     getUserData()
@@ -233,7 +244,7 @@ const Store = () => {
           </div>
         }
         {isMenu === 2 &&
-          <div className="transaction gap-x-5 mb-5 overflow-x-scroll lg:overflow-hidden">
+          <div className="transaction mb-5 overflow-x-scroll lg:overflow-hidden">
             <TransactionStore />
             {/* <div className='border shadow-sm rounded-lg bg-white'>
               <div className="header p-3 border-b font-medium"><h5>Transaksi</h5></div>
@@ -250,7 +261,67 @@ const Store = () => {
             <AddProductBox onIsMenu={handleIsMenu}/>
         }
         {isMenu === 4 &&
-            <ProductsStore />
+          <>
+            <div className="bg-white rounded-lg shadow-sm">
+              <div className="header p-3">
+                <h5 className='text-lg font-medium'>Daftar Barang</h5>
+              </div>
+
+              {/* filter box */}
+              <div className="filter-box font-medium text-[14px] mb-5 p-3 pb-5 grid grid-cols-5 gap-3">
+                <input type="text" placeholder='Filter By Nama Produk' className='border col-span-2 lg:col-span-1 rounded-md shadow-sm outline-none px-4 py-2 w-full' />
+                <input type="text" placeholder='Filter By Kategori' className='border col-span-2 lg:col-span-1 rounded-md shadow-sm outline-none px-4 py-2 w-full' />
+                <button className='border rounded-md shadow-sm outline-none px-4 py-2 w-full bg-aksen text-white'>Cari</button>
+              </div>
+            </div>
+
+            {products.length == 0?
+              <div className='text-center flex justify-center flex-col items-center py-5 border-t'>
+                <img src={barangNull} />
+                <p className=''>Belum ada barang yang di jual</p>
+              </div>
+              :
+              <>
+                {detailProduct?
+                  <>
+                    <div className="header flex items-center gap-x-5 mb-5 p-3">
+                      <div onClick={()=>setDetailProduct(null)} className="back p-2 cursor-pointer hover:bg-blue-200 hover:text-aksen border border-slate-500 hover:border-blue-300 rounded-lg">
+                        <FaChevronLeft />
+                      </div>
+                      <h6 className='font-medium text-md text-slate-700'>Detail Produk</h6>
+                    </div>
+                    <AddProductBox updateProduct={detailProduct}/>
+                  </>
+                  :
+                  <div className='rounded-lg shadow-sm overflow-hidden overflow-x-scroll lg:overflow-hidden'>
+                    <div className='min-w-[900px]'>
+                      <div className="column-name grid grid-cols-6 font-medium p-5 bg-slate-200">
+                        <h6>No</h6>
+                        <h6>Produk</h6>
+                        <h6>Kategori</h6>
+                        <h6>Harga</h6>
+                        <h6>Stok</h6>
+                        <h6>Aksi</h6>
+                      </div>
+
+                      <div className="product-list bg-white">
+                        {products.map((item, index)=>(
+                          <div className="column-name grid grid-cols-6 text-[14px] p-5 hover:bg-slate-100 border-b">
+                            <h6>{index+1}</h6>
+                            <h6>{item.productName}</h6>
+                            <h6>{item.category}</h6>
+                            <h6>Rp{item.price}</h6>
+                            <h6>{item.stock}</h6>
+                            <button onClick={()=>setDetailProduct(item)} className='py-1 rounded-md border border-orange-400 hover:bg-orange-400 font-medium text-orange-400 mt-[-5px] hover:text-white w-[100px]'>Detail</button>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                }  
+              </>
+            }
+          </>
         }
       </main>
     </div>

@@ -4,21 +4,38 @@ import CardPayment from '../components/molecules/CardPayment'
 import CheckoutProductBox from '../components/template/CheckoutProductBox'
 import { akulakuLogo, alfamartLogo, bcaLogo, bniLogo, briLogo, danaLogo, gopayLogo, indomaretLogo, kredivoLogo, linkajaLogo, mandiriLogo, ovoLogo } from '../assets'
 import VoucherBox from '../components/molecules/VoucherBox'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
+import Cookies from 'js-cookie'
 import Swal from 'sweetalert2'
 import { useDispatch } from 'react-redux'
 import { addProductAfterCheckout, removeCart } from '../reducers/cartReducers'
+import { getUserById } from '../api/api'
 
 const Checkout = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
+  const userID = Cookies.get('userID');
   const productInformation = location.state || null;
   const [createPesanan, setCreatePesanan] = useState(false);
   const [selectPayment, setSelectPayment] = useState(null);
   const [isShowAllPayment, setIsShowAllPayment] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [detailProduct, setDetailProduct] = useState({totalPrice: 0, totalQty:0, productId: []})
+  const [addresses, setAddresses] = useState([{username:'',noHp:'',fullAddress:'',subdistrict:'',city:'',province:''}])
+
+  useEffect(() => {
+    // Fetch existing addresses
+    const fetchAddresses = async () => {
+      try {
+        const response = await getUserById(userID);
+        setAddresses(response.address);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchAddresses();
+  }, []);
 
   useEffect(()=>{
     getTotalPrices()
@@ -53,29 +70,37 @@ const Checkout = () => {
   })
 
   const  handleClickBuy = () => {
-    if(selectPayment !== null){
+    if(addresses.length === 0){
       Swal.fire({
-        title: "Pesanan Berhasil Dibuat",
-        text: "",
-        icon: "success"
-      });
-      const dataToRemove = detailProduct.productId
-      dataToRemove.map(item => (
-        dispatch(removeCart(item))
-      ))
-      setIsLoading(true)
-      setTimeout(() => {
-        setIsLoading(false)
-        navigate('/profile', {state: true})
-      }, 3000);
-
-      dispatch(addProductAfterCheckout(productInformation))
-    } else {
-      Swal.fire({
-        title: "Pilih metode pembayaran terlebih dahulu",
+        title: "Anda belum menambahkan alamat",
         text: "",
         icon: "warning"
       });
+    }else{
+      if(selectPayment !== null){
+        Swal.fire({
+          title: "Pesanan Berhasil Dibuat",
+          text: "",
+          icon: "success"
+        });
+        const dataToRemove = detailProduct.productId
+        dataToRemove.map(item => (
+          dispatch(removeCart(item))
+        ))
+        setIsLoading(true)
+        setTimeout(() => {
+          setIsLoading(false)
+          navigate('/profile', {state: true})
+        }, 3000);
+  
+        dispatch(addProductAfterCheckout(productInformation))
+      } else {
+        Swal.fire({
+          title: "Pilih metode pembayaran terlebih dahulu",
+          text: "",
+          icon: "warning"
+        });
+      }
     }
   }
 
@@ -93,17 +118,26 @@ const Checkout = () => {
           <div className="address-box w-full pb-2 border shadow-sm rounded-lg mb-3">
             <div className="header flex items-center justify-between px-2 py-1 bg-slate-100">
               <h6>Alamat Pengiriman</h6>
-              <button>Ubah</button>
+              {/* <button>Ubah</button> */}
             </div>
             <div className="content p-2">
-              <div className="contact font-medium flex items-center gap-x-10 mb-3">
-                <h6>Jimly Assidqi</h6>
-                <h6>082329322353</h6>
+              {addresses.length === 0?
+              <div className='py-5 flex items-center gap-x-5'>
+                <h5>Belum menambahkan alamat</h5>
+                <Link to={'/profile'}><p className='px-3 py-1 rounded-lg bg-aksen text-white text-[14px]'>Tambah alamat</p></Link>
               </div>
-              <div className="address flex items-center gap-x-5">
-                <h6 className='destination flex items-center text-[14px] md:text-normal px-2 justify-center pb-[2px] rounded-full bg-aksen text-white font-medium w-[80px]'>Rumah</h6>
-                <p>Purwanegara, kec. Purwokerto Utara, Kab. Banyumas, Jawa Tengah</p>
-              </div>
+              :
+              <>
+                <div className="contact font-medium flex items-center gap-x-10 mb-3">
+                  <h6>{addresses[0].username}</h6>
+                  <h6>{addresses[0].noHp}</h6>
+                </div>
+                <div className="address flex items-center gap-x-5">
+                  <h6 className='destination flex items-center text-[14px] md:text-normal px-2 justify-center pb-[2px] rounded-full bg-aksen text-white font-medium w-[80px]'>Rumah</h6>
+                  <p>{addresses[0].fullAddress}, {addresses[0].subdistrict}, {addresses[0].city}, {addresses[0].province}</p>
+                </div>
+              </>
+              }
             </div>
           </div>
           <CheckoutProductBox products={productInformation}/>
@@ -138,8 +172,8 @@ const Checkout = () => {
               </div>
             </div>
           </div>
-          <div className="header flex items-center justify-between">
-            <h5 className='font-medium'>Pilih Metode Pembayaran</h5>
+          <div className="header flex items-center justify-between text-[14px]">
+            <h5 className='font-medium text-[16px]'>Pilih Metode Pembayaran</h5>
             <button onClick={()=>setIsShowAllPayment(prev => !prev)} className='text-aksen'>Lihat semua metode {'>'}</button>
           </div>
           <div className="box-payment my-4">
