@@ -35,7 +35,7 @@ const Profile = () => {
 
   useEffect(()=> {
     getUserData()
-  }, [userLogin])
+  }, [])
 
   const getUserData = async() => {
     if (userID) {
@@ -45,16 +45,21 @@ const Profile = () => {
   };
 
   useEffect(() => {
-    const fetchAddresses = async () => {
-      try {
-        const response = await getUserById(userID);
-        setAddresses(response.address);
-      } catch (error) {
-        console.error(error);
-      }
-    };
     fetchAddresses();
-  }, [addresses]);
+  }, []);
+
+  const fetchAddresses = async () => {
+    try {
+      const response = await getUserById(userID);
+      setAddresses(response.address);
+    } catch (error) {
+      return error
+    }
+  };
+
+  // useEffect(()=>{
+    console.log(addresses);
+  // }, [addresses])
 
   const handleChange = (e) => {
     setNewAddress({...newAddress, [e.target.name]: e.target.value})
@@ -69,7 +74,7 @@ const Profile = () => {
       });
       setOnAddAddress(false)
     } catch (error) {
-      console.error(error);
+      return error
     }
   } 
 
@@ -96,7 +101,7 @@ const Profile = () => {
           {isMenuProfile === 3 && <h6>Pesanan Saya</h6>}
           {isMenuProfile === 4 && <h6>Toko Favorit</h6>}
           {isMenuProfile === 5 && <h6>Keamanan</h6>}
-          <div className={`${isMenuProfileMobile?'block':'hidden'} absolute top-[70px] w-[200px] border rounded-md bg-white`}>
+          <div className={`${isMenuProfileMobile?'block':'hidden'} z-40 absolute top-[70px] w-[200px] border rounded-md bg-white`}>
             <ul className='py-2 mt-3 font-medium text-slate-600'>
               <li onClick={()=>handleClickMenuProfileMobile(1)} className={`flex items-center gap-x-2 px-5 py-3 ${isMenuProfile === 1 && 'bg-blue-200 border-l-[5px] border-blue-500 text-blue-500'} hover:bg-blue-200 hover:border-blue-500 hover:border-l-[5px] cursor-pointer`}><FaUser size={20}/> <span className='text-[15px]'>Biodata Diri</span></li>
               <li onClick={()=>handleClickMenuProfileMobile(2)} className={`flex items-center gap-x-2 px-5 py-3 ${isMenuProfile === 2 && 'bg-blue-200 border-l-[5px] border-blue-500 text-blue-500'} hover:bg-blue-200 hover:border-blue-500 hover:border-l-[5px] cursor-pointer`}><FaMapLocationDot size={20}/> <span className='text-[15px]'>Daftar Alamat</span></li>

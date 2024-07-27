@@ -7,6 +7,7 @@ import { login, register } from '../../api/api';
 import Swal from 'sweetalert2'
 import { useDispatch } from 'react-redux';
 import { setAuth } from '../../reducers/authReducers';
+import Loading from '../molecules/Loading';
 
 const Auth = ({children, title, txtButton, link, redirectPage, dataUser}) => {
   const dispatch = useDispatch();
@@ -20,10 +21,6 @@ const Auth = ({children, title, txtButton, link, redirectPage, dataUser}) => {
     e.preventDefault();
     if(txtButton == 'Login'){
       dataLoginUser(dataUser)
-      setIsLoading(true)
-      setTimeout(() => {
-        setIsLoading(false)
-      }, 3000);
     }
     if(txtButton == 'Daftar'){
       addDataUser(dataUser)
@@ -63,6 +60,7 @@ const Auth = ({children, title, txtButton, link, redirectPage, dataUser}) => {
   
   const dataLoginUser = async(data) => {
     try {
+      setIsLoading(true)
       const response = await login(data)
       if(typeof(response) == 'object'){
         dispatch(setAuth(true))
@@ -71,6 +69,7 @@ const Auth = ({children, title, txtButton, link, redirectPage, dataUser}) => {
       } else {
         handleError(response)
       }
+      setIsLoading(false)
     } catch (error) {
       console.log(error);
     }
@@ -93,7 +92,7 @@ const Auth = ({children, title, txtButton, link, redirectPage, dataUser}) => {
           <div className="header text-slate-700 mb-8">
             <img src={logoTextFooter} className='w-[150px] mb-10' />
             <h3 className='font-bold text-3xl mb-1'>{title}</h3>
-            <p className='text-[14px]'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente, sunt?</p>
+            <p className='text-[14px]'>Marketplace produk agro dan marina</p>
           </div>
           {messageError !== '' && <h6 className='text-red-500'>{messageError}</h6>}
           <div className="form-box">
@@ -119,26 +118,7 @@ const Auth = ({children, title, txtButton, link, redirectPage, dataUser}) => {
         </div>
       </div>
       {isLoading && 
-        <div className="loading absolute left-0 top-0 right-0 bottom-0 flex items-center justify-center bg-slate-600 bg-opacity-15">
-          <div className="box px-[30px] py-[25px] bg-white rounded-md">
-            <svg className="h-7 w-7 animate-spin stroke-slate-500" viewBox="0 0 256 256">
-              <line x1="128" y1="32" x2="128" y2="64" strokeLinecap="round" strokeLinejoin="round" strokeWidth="24"></line>
-              <line x1="195.9" y1="60.1" x2="173.3" y2="82.7" strokeLinecap="round" strokeLinejoin="round"
-                  strokeWidth="24"></line>
-              <line x1="224" y1="128" x2="192" y2="128" strokeLinecap="round" strokeLinejoin="round" strokeWidth="24">
-              </line>
-              <line x1="195.9" y1="195.9" x2="173.3" y2="173.3" strokeLinecap="round" strokeLinejoin="round"
-                  strokeWidth="24"></line>
-              <line x1="128" y1="224" x2="128" y2="192" strokeLinecap="round" strokeLinejoin="round" strokeWidth="24">
-              </line>
-              <line x1="60.1" y1="195.9" x2="82.7" y2="173.3" strokeLinecap="round" strokeLinejoin="round"
-                  strokeWidth="24"></line>
-              <line x1="32" y1="128" x2="64" y2="128" strokeLinecap="round" strokeLinejoin="round" strokeWidth="24"></line>
-              <line x1="60.1" y1="60.1" x2="82.7" y2="82.7" strokeLinecap="round" strokeLinejoin="round" strokeWidth="24">
-              </line>
-            </svg>
-          </div>
-        </div>
+        <Loading />
       }
     </div>
   )

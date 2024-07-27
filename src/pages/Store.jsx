@@ -246,15 +246,6 @@ const Store = () => {
         {isMenu === 2 &&
           <div className="transaction mb-5 overflow-x-scroll lg:overflow-hidden">
             <TransactionStore />
-            {/* <div className='border shadow-sm rounded-lg bg-white'>
-              <div className="header p-3 border-b font-medium"><h5>Transaksi</h5></div>
-              <div className="main flex justify-center items-center py-10">
-                <div className='text-center'>
-                  <img src={transactionNull} className='w-[300px]' />
-                  <p className=''>Belum Ada Transaksi</p>
-                </div>
-              </div>
-            </div> */}
           </div>
         }
         {isMenu === 3 &&

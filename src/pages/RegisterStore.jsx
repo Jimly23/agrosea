@@ -1,10 +1,12 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Footer from '../components/template/Footer'
 import { logoText } from '../assets'
 import InputBox from '../components/Atoms/InputBox'
 import { useLocation, useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
-import { updateUser } from '../api/api'
+import { getProvince, getRegencies, updateUser } from '../api/api'
+import dataWilayah from '../api/dataWilayah'
+import Loading from '../components/molecules/Loading'
 
 const RegisterStore = () => {
   const navigate = useNavigate()
@@ -44,6 +46,14 @@ const RegisterStore = () => {
     }
   }
 
+  useEffect(()=>{
+    const getProvinsi = async()=>{
+      const provinsi = await getProvince()
+      setDistricts(provinsi)
+    }
+    getProvinsi()
+  }, [])
+
   return (
     <div className='mt-[-53px] pt-[28px] bg-bg'>
       <div className='max-w-[1280px] min-h-[90vh] mx-auto p-5 bg-white'>
@@ -54,30 +64,9 @@ const RegisterStore = () => {
             <InputBox include={handleInclude} name={'storeName'} title={'Nama Toko'} placeholder={'Masukan nama toko anda'} style={'font-medium mb-3'}/>
             <InputBox include={handleInclude} name={'email'} title={'Email Aktif'} placeholder={'Masukan email anda'} style={'font-medium mb-3'}/>
             <InputBox include={handleInclude} name={'telp'} title={'Telepon'} placeholder={'Masukan nomor telepon anda'} style={'font-medium mb-3'}/>
-            <div className='mb-3'>
-              <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Provinsi</label>
-              <select id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                <option selected >Pilih provinsi</option>
-                <option value="US">United States</option>
-                <option value="CA">Canada</option>
-                <option value="FR">France</option>
-                <option value="DE">Germany</option>
-              </select>
-            </div>
             <div className="grid grid-cols-2 gap-2">
-              <div>
-                <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kota</label>
-                <select id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                  <option selected >Pilih kota</option>
-                  <option value="US">United States</option>
-                  <option value="CA">Canada</option>
-                  <option value="FR">France</option>
-                  <option value="DE">Germany</option>
-                </select>
-              </div>
-              <div>
-                <InputBox include={handleInclude} name={'pos'} title={'Kode Pos'} placeholder={'Masukan kode pos'} style={'font-medium mb-3'}/>
-              </div>
+            <InputBox include={handleInclude} name={'province'} title={'Provinsi'} placeholder={'Masukan Provinsi anda'} style={'font-medium mb-5'}/>
+            <InputBox include={handleInclude} name={'city'} title={'Kota'} placeholder={'Masukan Kota anda'} style={'font-medium mb-5'}/>
             </div>
             <InputBox include={handleInclude} name={'address'} title={'Alamat toko offline anda'} placeholder={'Masukan alamat toko offline anda (jika ada)'} style={'font-medium mb-5'}/>
             <button type='submit' className='bg-aksen text-white py-2 rounded-lg w-full font-medium'>Daftar</button>
@@ -87,26 +76,7 @@ const RegisterStore = () => {
       </div>
 
       {isLoading && 
-        <div className="loading absolute left-0 top-0 right-0 bottom-0 flex items-center justify-center bg-slate-600 bg-opacity-15">
-          <div className="box px-[30px] py-[25px] bg-white rounded-md">
-            <svg className="h-7 w-7 animate-spin stroke-slate-500" viewBox="0 0 256 256">
-              <line x1="128" y1="32" x2="128" y2="64" strokeLinecap="round" strokeLinejoin="round" strokeWidth="24"></line>
-              <line x1="195.9" y1="60.1" x2="173.3" y2="82.7" strokeLinecap="round" strokeLinejoin="round"
-                  strokeWidth="24"></line>
-              <line x1="224" y1="128" x2="192" y2="128" strokeLinecap="round" strokeLinejoin="round" strokeWidth="24">
-              </line>
-              <line x1="195.9" y1="195.9" x2="173.3" y2="173.3" strokeLinecap="round" strokeLinejoin="round"
-                  strokeWidth="24"></line>
-              <line x1="128" y1="224" x2="128" y2="192" strokeLinecap="round" strokeLinejoin="round" strokeWidth="24">
-              </line>
-              <line x1="60.1" y1="195.9" x2="82.7" y2="173.3" strokeLinecap="round" strokeLinejoin="round"
-                  strokeWidth="24"></line>
-              <line x1="32" y1="128" x2="64" y2="128" strokeLinecap="round" strokeLinejoin="round" strokeWidth="24"></line>
-              <line x1="60.1" y1="60.1" x2="82.7" y2="82.7" strokeLinecap="round" strokeLinejoin="round" strokeWidth="24">
-              </line>
-            </svg>
-          </div>
-        </div>
+        <Loading />
       }
     </div>
   )

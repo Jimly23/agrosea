@@ -23,10 +23,9 @@ const TransactionStore = () => {
       </div>
 
       <main>
-        <div className="column-name grid grid-cols-7 font-medium p-5 bg-slate-200 gap-2">
+        <div className="column-name grid grid-cols-6 font-medium p-5 bg-slate-200 gap-2">
           <h6>Trx ID</h6>
           <h6>Produk</h6>
-          <h6>Tujuan</h6>
           <h6>SN</h6>
           <h6>Harga</h6>
           <h6>Status</h6>

@@ -108,6 +108,64 @@ import kepiting3 from './product-images/kepiting3.jpg'
 import kepiting4 from './product-images/kepiting4.jpeg'
 import kepiting5 from './product-images/kepiting5.jpeg'
 
+import arit1 from './product-images/arit1.jpg'
+import arit2 from './product-images/arit2.png'
+import arit3 from './product-images/arit3.png'
+import arit4 from './product-images/arit4.png'
+import arit5 from './product-images/arit5.png'
+
+import cungkir1 from './product-images/cungkir1.jpeg'
+import cungkir2 from './product-images/cungkir2.jpg'
+import cungkir3 from './product-images/cungkir3.jpg'
+import cungkir4 from './product-images/cungkir4.jpg'
+import cungkir5 from './product-images/cungkir5.jpg'
+
+import gatul1 from './product-images/gatul1.jpg'
+import gatul2 from './product-images/gatul2.jpg'
+import gatul3 from './product-images/gatul3.jpg'
+import gatul4 from './product-images/gatul4.jpg'
+import gatul5 from './product-images/gatul5.jpg'
+
+import jala1 from './product-images/jala1.jpeg'
+import jala2 from './product-images/jala2.jpg'
+import jala3 from './product-images/jala3.jpg'
+import jala4 from './product-images/jala4.jpg'
+import jala5 from './product-images/jala5.jpg'
+
+import jaring1 from './product-images/jaring1.jpeg'
+import jaring2 from './product-images/jaring2.jpg'
+import jaring3 from './product-images/jaring3.jpg'
+import jaring4 from './product-images/jaring4.jpg'
+import jaring5 from './product-images/jaring5.jpg'
+
+import kail1 from './product-images/kail1.jpg'
+import kail2 from './product-images/kail2.jpeg'
+import kail3 from './product-images/kail3.jpg'
+import kail4 from './product-images/kail4.jpg'
+import kail5 from './product-images/kail5.jpg'
+
+import pancing1 from './product-images/pancing1.jpeg'
+import pancing2 from './product-images/pancing2.jpg'
+import pancing3 from './product-images/pancing3.jpg'
+import pancing4 from './product-images/pancing4.jpg'
+import pancing5 from './product-images/pancing5.jpg'
+
+import petel1 from './product-images/petel1.jpg'
+import petel2 from './product-images/petel2.jpg'
+import petel3 from './product-images/petel3.jpg'
+import petel4 from './product-images/petel4.jpg'
+import petel5 from './product-images/petel5.jpeg'
+
+import sekopmini1 from './product-images/sekopmini1.jpeg'
+import sekopmini2 from './product-images/sekopmini2.jpg'
+import sekopmini3 from './product-images/sekopmini3.jpg'
+import sekopmini4 from './product-images/sekopmini4.jpg'
+import sekopmini5 from './product-images/sekopmini5.jpg'
+
+import tombakIkan1 from './product-images/tombakIkan1.jpeg'
+import tombakIkan2 from './product-images/tombakIkan2.jpg'
+import tombakIkan3 from './product-images/tombakIkan3.jpg'
+import tombakIkan4 from './product-images/tombakIkan4.jpg'
 
 import vectorStore from './vectorStore.png'
 import vectorImg from './imgVector.png'
@@ -181,5 +239,8 @@ export {
   productBitSayur2,productBitSayur3,productBitSayur4,productBitSayur5,kepiting2,kepiting3,kepiting4,kepiting5,productKit2,productKit3,productKit4,productKit5,
   bandeng2,bandeng3,bandeng4,bandeng5,gurame2,gurame3,gurame4,gurame5,lele2,lele3,lele4,lele5,patin2,patin3,patin4,patin5,
   trukVector,walletVector,starVector,boxOpenVector,trending1,trending2,trending3,agroEdu1,agroEdu2,agroEdu3,agroEdu4,agroEdu5,agroEdu6,agroEdu7,agroEdu8,
-  marinaEdu1,marinaEdu2,marinaEdu3,marinaEdu4,marinaEdu5,marinaEdu6,marinaEdu7,marinaEdu8,agroseaAcademy
+  marinaEdu1,marinaEdu2,marinaEdu3,marinaEdu4,marinaEdu5,marinaEdu6,marinaEdu7,marinaEdu8,agroseaAcademy,arit1,arit2,arit3,arit4,arit5,
+  cungkir1,cungkir2,cungkir3,cungkir4,cungkir5,gatul1,gatul2,gatul3,gatul4,gatul5,jala1,jala2,jala3,jala4,jala5,jaring1,jaring2,jaring3,jaring4,jaring5,
+  kail1,kail2,kail3,kail4,kail5,pancing1,pancing2,pancing3,pancing4,pancing5,petel1,petel2,petel3,petel4,petel5,sekopmini1,sekopmini2,sekopmini3,sekopmini4,sekopmini5,
+  tombakIkan1,tombakIkan2,tombakIkan3,tombakIkan4
 }
